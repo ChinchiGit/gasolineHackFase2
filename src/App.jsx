@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { GasolinerasListContext } from './context/GasolinerasListContext';
-
+import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header"
 import Main from "./components/Main"
 import axios from 'axios';
@@ -16,7 +16,7 @@ function App() {
   //ESTADO PARA ALMACENAR OBJETO DEPURADO. SE COMPARTE POR CONTEXTO.
   const [gasolinerasList, setGasolinerasList] = useState("")
 
-  //FETCH A LA API 
+  //FETCH A LA API UNA VEZ AL CARGAR LA APLICACION -->[]
   useEffect(() => {
     async function getAll() {
       try {
@@ -83,13 +83,13 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter> */}
+      <BrowserRouter>
         <GasolinerasListContext.Provider value={gasolinerasListData}>  
           <Header/>
           <Main/>
         </GasolinerasListContext.Provider>
         {/* <Footer/> */}
-      {/* </BrowserRouter> */}
+      </BrowserRouter>
     </>
   )
 }
