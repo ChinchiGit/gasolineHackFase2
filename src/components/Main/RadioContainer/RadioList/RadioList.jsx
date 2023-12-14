@@ -2,20 +2,18 @@ import React from 'react';
 import { useTable, usePagination, useSortBy } from 'react-table';
 
 
-const ProvinciaList = ({ data, eleccion }) => {
-
-  console.log("prueba tabla provincia: " + `${eleccion.combustibleElegido}`)
+const RadioList = ({ data, eleccion }) => {
+  
+  
 
   const columns = React.useMemo(
     () => [
       { Header: 'Dirección', accessor: 'Dirección' },
       { Header: 'Localidad', accessor: 'Localidad' },
-      { Header: 'Precio (€/L)', accessor: `${eleccion.combustibleElegido}` },
+      { Header: 'Precio (€/L)', accessor: `${eleccion.combustible}` },
       { Header: 'Distancia (Km)', accessor: 'distancia' },
-
-
     ],
-    [eleccion.combustibleElegido]
+    [eleccion.combustible]
   );
 
   const {
@@ -38,8 +36,8 @@ const ProvinciaList = ({ data, eleccion }) => {
   return (
     <>
       <section>
-        <h4>Provincia: {eleccion.provinciaElegida} </h4>
-        {eleccion.combustibleElegido === "Precio Gasoleo A" ? <h4>Combustible: Diesel</h4> : <h4>Combustible: Gasolina</h4>}
+        <h4>Radio: {eleccion.radio} km. </h4>
+        {eleccion.combustible === "Precio Gasoleo A" ? <h4>Combustible: Diesel</h4> : <h4>Combustible: Gasolina</h4>}
       </section>
       <div>
         <table {...getTableProps()} style={{ width: '100%' }}>
@@ -62,10 +60,10 @@ const ProvinciaList = ({ data, eleccion }) => {
               prepareRow(row);
               const ruta = `/detalles/:${row.original.IDEESS}`
               return (
-
-                <tr href={ruta} {...row.getRowProps()} onClick={event => window.location.href = `/detalles/:${row.original.IDEESS}`}>
+                
+                <tr href={ruta} {...row.getRowProps()} onClick={event =>  window.location.href=`/detalles/:${row.original.IDEESS}`}>
                   {row.cells.map(cell => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>                
                   ))}
                 </tr>
 
@@ -81,7 +79,7 @@ const ProvinciaList = ({ data, eleccion }) => {
           <span>
             Página{' '}
             <strong>
-              {pageIndex + 1} de {Math.ceil(data.length / 10)}
+              {pageIndex + 1} de {Math.ceil(data.length /10)}
             </strong>{' '}
           </span>
           <button onClick={() => nextPage()} disabled={!canNextPage}>
@@ -93,4 +91,4 @@ const ProvinciaList = ({ data, eleccion }) => {
   );
 };
 
-export default ProvinciaList;
+export default RadioList;

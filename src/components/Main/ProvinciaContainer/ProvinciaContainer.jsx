@@ -4,11 +4,11 @@ import ProvinciaList from "./ProvinciaList/ProvinciaList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
 
 const ProvinciaContainer = () => {
-
+  //RECOGE DE CONTEXTO EL CONJUNTO DE GASOLINERAS
   const { gasolinerasList } = useContext(GasolinerasListContext);
   //ESTADO QUE RECOGE DEL FORMULARIO LA PROVINCIA Y TIPO DE COMBUSTIBLE
   const [eleccionUsuario, setEleccionUsuario] = useState({});
-  //ESTADO TRAS ACOTAR EL LISTADO OBTENIDO DE CONTEXTO A LA PROVINCIA DESIGNADA.  
+  //ESTADO TRAS ACOTAR EL LISTADO OBTENIDO DE CONTEXTO A LA PROVINCIA DESIGNADA.SE MANDA POR PROPS A ProvinciaList Y SE PINTA.  
   const [listadoProvincia, setlistadoProvincia] = useState([]);
 
   //CUANDO EL USUARIO YA HA ELEGIDO ROVINCIA Y COMBUSTIBLE SE LANZAN LAS FUNCIONES PARA ACOTAR --> [eleccionUsuario]
@@ -46,7 +46,7 @@ const ProvinciaContainer = () => {
   return (
     <>
       <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
-      <ProvinciaList data={listadoProvincia}/>
+      <ProvinciaList data={listadoProvincia} eleccion={eleccionUsuario}/>
     </>
   )
 };

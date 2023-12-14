@@ -23,7 +23,6 @@ const ProvinciaForm = ({setEleccionUsuario}) => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="provincia">Selecciona una provincia:</label>
         <select name="provincia" id="provincia" required>
-          <option value="">Selecciona una provincia</option>
           <option value="ARABA/ÁLAVA">Álava</option>
           <option value="ALBACETE">Albacete</option>
           <option value="ALICANTE">Alicante</option>
