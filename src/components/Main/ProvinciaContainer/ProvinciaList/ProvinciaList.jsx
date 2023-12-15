@@ -4,7 +4,7 @@ import { useTable, usePagination, useSortBy } from 'react-table';
 
 const ProvinciaList = ({ data, eleccion }) => {
 
-  console.log("prueba tabla provincia: " + `${eleccion.combustibleElegido}`)
+  console.log("prueba tabla provincia: ", data)
 
   const columns = React.useMemo(
     () => [
