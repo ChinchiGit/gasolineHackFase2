@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ProvinciaForm from "./ProvinciaForm/ProvinciaForm";
 import ProvinciaList from "./ProvinciaList/ProvinciaList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import Map1provincia from "./ProvinciaList/Map1Provincia/Map1provincia";
 
 const ProvinciaContainer = () => {
   //RECOGE DE CONTEXTO EL CONJUNTO DE GASOLINERAS
@@ -47,6 +48,7 @@ const ProvinciaContainer = () => {
     <>
       <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
       <ProvinciaList data={listadoProvincia} eleccion={eleccionUsuario}/>
+      <Map1provincia data={listadoProvincia}/>
     </>
   )
 };

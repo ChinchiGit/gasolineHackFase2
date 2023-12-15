@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import RadioForm from "./RadioForm/RadioForm";
 import RadioList from "./RadioList/RadioList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import Map1radio from "./RadioList/Map1radio/Map1radio";
 
 const RadioContainer = () => {
   // RECOGE DE CONTEXTO EL LISTADO TOTAL DEPURADO
@@ -47,6 +48,7 @@ const RadioContainer = () => {
     <>
       <RadioForm setEleccionUsuario={setEleccionUsuario} />
       <RadioList data={listadoRadio} eleccion={eleccionUsuario} />
+      <Map1radio data={listadoRadio}/>
     </>
   )
 };

@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function App() {
   //ESTADO PARA ALMACENAR UBICACION DEL USUARIO.  SE COMPARTE POR CONTEXTO.
-  const [ubicacionUsuario, setUbicacionUsuario] = useState([])
+  const [ubicacionUsuario, setUbicacionUsuario] = useState()
 
   //ESTADO PARA ALMACENAR OBJETO PROVENIENTE DE FETCH
   const [gasolinerasBruto, setGasolinerasBruto] = useState([]);
@@ -37,7 +37,7 @@ function App() {
     if ('geolocation' in navigator) {
       obtenerUbicacion();
     } else {
-      console.error('La geolocalización no está soportada por este navegador');
+      console.error('Geolocalización no soportada por este navegador');
     }
   }, []);
 
@@ -148,6 +148,7 @@ function App() {
 
 
   const gasolinerasListData = { gasolinerasList };
+  const ubicacioUsuarioData = { ubicacionUsuario };
 
 
   return (
@@ -155,7 +156,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <GasolinerasListContext.Provider value={gasolinerasListData}>
-          <UserUbicationContext.Provider value={ubicacionUsuario}>
+          <UserUbicationContext.Provider value={ubicacioUsuarioData}>
             <Main />
           </UserUbicationContext.Provider>
         </GasolinerasListContext.Provider>
