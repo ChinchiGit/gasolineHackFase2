@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GasolinerasListContext } from './context/GasolinerasListContext';
 import { UserUbicationContext } from "./context/UserUbicationContext"
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider, UserAuth } from "./context/AuthContext";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import axios from 'axios';
@@ -154,12 +155,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <GasolinerasListContext.Provider value={gasolinerasListData}>
-          <UserUbicationContext.Provider value={ubicacioUsuarioData}>
-            <Main />
-          </UserUbicationContext.Provider>
-        </GasolinerasListContext.Provider>
+        <AuthContextProvider>
+          <Header />
+          <GasolinerasListContext.Provider value={gasolinerasListData}>
+            <UserUbicationContext.Provider value={ubicacioUsuarioData}>
+              <Main />
+            </UserUbicationContext.Provider>
+          </GasolinerasListContext.Provider>
+        </AuthContextProvider>
         {/* <Footer/> */}
       </BrowserRouter>
     </>
