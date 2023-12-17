@@ -1,7 +1,37 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Link } from 'react-router-dom';
+import { UserAuth } from "../../../context/AuthContext";
+import "./Nav.css"
 
 const Nav = () => {
-  return <div>Nav</div>;
+  const {user} = UserAuth();
+
+  return (
+    <>
+      {user &&
+        <nav>
+
+          <div>
+            <a href="/dashboardUser"> </a>
+            <img src="" alt="" />
+          </div>
+          <div id="desplegable">
+            <input type="checkbox" id="menu"/>
+            <label htmlFor="menu" id="menu-icon">☰</label>
+            <ul>
+              <li><Link  to='/home'>HOME</Link></li>
+              <li><Link  to='/cercana'>GASOLINERA MAS CERCANA</Link></li>
+              <li><Link  to='/provincia'>BUSCAR POR PROVINCIA</Link></li>
+              <li><Link  to='/radio'>BUSCAR POR RADIO</Link></li>
+              <li><Link  to='/misgasolineras'>MIS GASOLINERAS</Link></li>
+              <li><Link  to='/logout'>LOGOUT</Link></li>
+            </ul> 
+          </div>
+        </nav>
+      }
+    </>
+  )
 };
 
 export default Nav;
+

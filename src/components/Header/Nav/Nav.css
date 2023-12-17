@@ -1,0 +1,54 @@
+nav{
+    background-color:#d1ac00;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    font-family: Clover_extrabold;
+}
+
+ul {
+    display: none;
+    width: 80%;
+    background-color: #0c1618;
+    margin: 2%;
+}
+
+input:checked~ul {
+    display: block;
+}
+
+#menu {
+    display: none;
+}
+
+nav>div>label {
+    box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
+
+li {
+    display: block;
+    background: lightgrey;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid grey;
+}
+
+#smileIcon{
+    height: 40px;
+}
+
+#desplegable{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
