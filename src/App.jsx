@@ -95,7 +95,7 @@ function App() {
         }
 
       };
-      setGasolinerasList(gasolinerasDepurado2);
+      setGasolinerasList([...gasolinerasDepurado2]);
     };
 
     //FUNCION HAVERSIN CALCULAR DISTANCIA (SE INVOCA DENTRO DE LA SIGUIENTE)

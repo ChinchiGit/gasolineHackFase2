@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable, usePagination, useSortBy } from 'react-table';
+import { Link } from 'react-router-dom';
 
 
 const ProvinciaList = ({ data, eleccion }) => {
@@ -63,10 +64,12 @@ const ProvinciaList = ({ data, eleccion }) => {
               const ruta = `/detalles/:${row.original.IDEESS}`
               return (
 
-                <tr href={ruta} {...row.getRowProps()} onClick={event => window.location.href = `/detalles/:${row.original.IDEESS}`}>
-                  {row.cells.map(cell => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  ))}
+                <tr href={ruta} {...row.getRowProps()}>
+                  
+                    {row.cells.map(cell => (
+                      <td {...cell.getCellProps()}><Link to={ruta} >{cell.render('Cell')}</Link></td>
+                    ))}
+                  
                 </tr>
 
 
