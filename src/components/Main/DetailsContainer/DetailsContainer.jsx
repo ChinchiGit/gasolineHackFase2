@@ -1,9 +1,12 @@
 import React, { useContext,useEffect, useState } from "react";
 import MapasDetails from "./MapasDetails/MapasDetails";
+import axios from "axios";
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import { UserAuth } from "../../../context/AuthContext";
 import "./DetailsContainer.css"
 
 const DetailsContainer = () => {
+  const {user} = UserAuth();
   const { gasolinerasList } = useContext(GasolinerasListContext);
   const [gasolineraDetails, setGasolineraDetails]=useState("");
   
@@ -19,10 +22,29 @@ const DetailsContainer = () => {
     setGasolineraDetails(gasolineraQuery);
   }, []); 
 
+  //FUNCION PARA AÑADIR A "MIS GASOLINERAS" SI HAY USUARIO LOGUEADO.
+  const addGasolinera = async ()=> {
+    const email = user.email;
+    const idEnApi = location.pathname.split(":").pop();
+    const endpoint = "http://localhost:3000/gasolineras/create"
+
+    try {
+      const response = await axios.post(endpoint, {
+        email: email,
+        idEnApi: idEnApi
+      });
+  
+      alert('Gasolinera añadida a MIS GASOLINERAS con éxito', response.data);
+
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error.message);
+    }
+  }
 
   return (
     <>
       <section>
+        <article>
         <table className="gas-station-card">
           <tbody>
             <tr>
@@ -59,6 +81,8 @@ const DetailsContainer = () => {
             </tr>
           </tbody>
         </table>
+        </article>
+        {user && <article><button onClick={addGasolinera}>AÑADIR A FAVORITAS</button></article>}
       </section>
       <MapasDetails/>
 

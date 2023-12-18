@@ -1,8 +1,35 @@
 #root {
-  max-width: 1280px;
+  --rojoHoover: #FB3640; 
+  --grey: rgb(95, 94, 93);
+  --blueMain: rgb(28, 51, 97);
+  --blueFondo: #1F487E;
+  --blueClear : rgb(36, 121, 158);
+  width: 100%;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+section{
+  background-color: rgba(28, 51, 97, 0.7);
+  width: 95%;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+article{
+  background-color: rgba(36, 121, 158, 0.7);
+  width: 80%;
+  border-radius: 15px;
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
 }
 
 .logo {

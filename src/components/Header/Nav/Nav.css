@@ -1,9 +1,13 @@
 nav{
-    background-color:#d1ac00;
+    background-color:rgba(36, 121, 158, 0.7);
     display: flex;
     padding: 15px;
     justify-content: space-between;
-    font-family: Clover_extrabold;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: left;
+
 }
 
 ul {

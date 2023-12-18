@@ -1,7 +1,140 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import axios from "axios";
+import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import { UserAuth } from "../../../context/AuthContext";
+import HistoricoPrecios from "./HistoricoPrecios/HistoricoPrecios"
 
 const MisGasolinerasContainer = () => {
-  return <div>MisGasolinerasContainer</div>;
-};
+  const { user } = UserAuth();
+  const { gasolinerasList } = useContext(GasolinerasListContext);
+  const [misGasolineras, setMisGasolineras] = useState([]);
+  const [datosApiMG, setDatosApiMG] = useState([]);
 
+
+
+  // FETCH A LA BASE DE DATOS SQL (EN LOCAL) PARA OBTENER GASOLINERAS DE USUARIO REGISTRADO CON SU MAIL
+  useEffect(() => {
+    let gasolinerasUser;
+    async function fetchData() {
+      const email = user.email;
+      const endpoint = `http://localhost:3000/usuarios/all-user-gasstation?email=${email}`;
+
+
+      try {
+        const response = await axios.get(endpoint);
+  
+        gasolinerasUser = response.data[0].Gasolineras;
+
+        setMisGasolineras([...gasolinerasUser])
+
+      } catch (error) {
+        console.error('Error al realizar la solicitud:', error.message);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  // OBTENIDAS DE LA BBDD LAS ID DE LAS GASOLINERAS FAVORITAS, RECUPERAMOS SUS DATOS DEL ARRAY QUE TENEMOS EN CONTEXTO CON LOS DATOS DE LA API DEPURADOS
+  useEffect(() => {
+    let getDataApi = [];
+    for (let i = 0; i < misGasolineras.length; i++) {
+
+      getDataApi = [...getDataApi, (gasolinerasList.find(
+        (gasolinera) => gasolinera.IDEESS == misGasolineras[i].idEnApi
+      ))]
+    }
+    setDatosApiMG([...getDataApi])
+    
+  }, [misGasolineras]);
+
+  //FUNCION PARA GUARDAR PRECIO DEL DIA EN LA BB.DD.
+  
+  const addPrecio = async (guardarPrecio, i) => {
+      const fecha = new Date();
+      const idGasolinera = misGasolineras[i].idGasolinera;
+      const precioGasolina = guardarPrecio["Precio Gasolina 95 E5"];
+      const precioDiesel= guardarPrecio["Precio Gasoleo A"];
+  
+      const endpoint = "http://localhost:3000/precios/create";
+  
+      try {
+        const response = await axios.post(endpoint, {
+          fecha : fecha,
+          idGasolinera : idGasolinera,
+          precioGasolina : precioGasolina,
+          precioDiesel: precioDiesel
+  
+        });
+  
+        alert('Añadido el precio de hoy a tu histórico de precios', response.data);
+      } catch (error) {
+        console.error('Se produjo un error:', error.message);
+      }
+    };
+  
+
+
+  //PREPARAR LA RUTA PARA IR A LA VISTA DETALLES
+  const ruta = (id)=>{
+    return `/detalles/:${id}`
+  }
+
+  const paintMisGasolineras = () => {
+    if (datosApiMG.length > 0) {
+      
+      return datosApiMG.map((element, i) => (
+        <>
+          <section>
+            <article>
+            <table className="gas-station-card">
+              <tbody>
+                <tr>
+                  <th>Dirección:</th>
+                  <td>{element.Dirección}</td>
+                </tr>
+                <tr>
+                  <th>Localidad:</th>
+                  <td>{element.Localidad}</td>
+                </tr>
+                <tr>
+                  <th>Precio gasolina hoy:</th>
+                  <td>{element["Precio Gasolina 95 E5"]} €</td>
+                </tr>
+                <tr>
+                  <th>Precio diesel hoy:</th>
+                  <td>{element["Precio Gasoleo A"]} €</td>
+                </tr>
+              </tbody>
+            </table>
+            </article>
+            <article>
+              <button><Link  to={ruta(element.IDEESS)}>DETALLES</Link></button>
+              <button onClick={() => addPrecio(element, i)}>GUARDAR PRECIO</button>
+            </article>
+          </section>
+          <section>
+
+              <HistoricoPrecios idGasolinera={misGasolineras[i].idGasolinera}/>
+          </section>
+
+        </>
+      ));
+    } else {
+      return (
+        <p>Ha habido un error</p>
+      )
+
+    }
+
+  };
+
+  return (
+    <>
+        {paintMisGasolineras()}
+    </>
+  );
+
+}
 export default MisGasolinerasContainer;

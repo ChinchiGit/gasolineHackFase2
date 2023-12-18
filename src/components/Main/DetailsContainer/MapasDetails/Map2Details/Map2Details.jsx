@@ -30,8 +30,6 @@ const Map2Details = () => {
   const map = useMap();
   const routingControlRef = useRef(null);
 
-  console.log("desde mapa con ruta", ubicacionUsuario.latitud);
-
   // Verificar que ubicacionUsuario y gasolineraDetails estén definidos
   const start = ubicacionUsuario ? [ubicacionUsuario.latitud, ubicacionUsuario.longitud] : null;
   const end = gasolineraDetails ? [gasolineraDetails.Latitud, gasolineraDetails["Longitud (WGS84)"]] : null;

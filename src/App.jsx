@@ -6,6 +6,7 @@ import { AuthContextProvider, UserAuth } from "./context/AuthContext";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import axios from 'axios';
+import "./App.css"
 
 
 function App() {

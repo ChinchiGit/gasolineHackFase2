@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTable, usePagination, useSortBy } from 'react-table';
-
+import { Link } from 'react-router-dom';
 
 const RadioList = ({ data, eleccion }) => {
   
@@ -61,9 +61,9 @@ const RadioList = ({ data, eleccion }) => {
               const ruta = `/detalles/:${row.original.IDEESS}`
               return (
                 
-                <tr href={ruta} {...row.getRowProps()} onClick={event =>  window.location.href=`/detalles/:${row.original.IDEESS}`}>
+                <tr {...row.getRowProps()}>
                   {row.cells.map(cell => (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>                
+                      <td {...cell.getCellProps()}><Link to={ruta} >{cell.render('Cell')}</Link></td>                
                   ))}
                 </tr>
 
