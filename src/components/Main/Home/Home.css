@@ -1,0 +1,13 @@
+#homeContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.texto{
+    padding:20px;
+}
+
+table{
+    width: 90% !important;;
+    margin:auto;
+}

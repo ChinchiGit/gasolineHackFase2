@@ -5,13 +5,26 @@
   --blueFondo: #1F487E;
   --blueClear : rgb(36, 121, 158);
   width: 100%;
-  /* max-width: 1280px; */
+  height: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+
+  
+}
+
+header{
+  padding-right: 15px;
+  padding-left: 15px;
+
 }
 
 section{
-  background-color: rgba(28, 51, 97, 0.7);
+  background-color: rgba(36, 121, 158, 0.7);
   width: 95%;
   border-radius: 15px;
   margin-left: auto;
@@ -32,6 +45,46 @@ article{
   margin-bottom: 10px;
 }
 
+
+table{
+
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  text-align: center;     
+  margin: 40px auto;
+  border-collapse: collapse;
+  background-color: var(--grey);
+  font-size: 0.7em;
+  color: white;
+}
+
+td{
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  width: 25%;
+  padding: 5px;
+ 
+}
+
+th{
+  background-color: var(--blueFondo);
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  padding: 5px;
+  
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -45,20 +98,6 @@ article{
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
@@ -66,4 +105,70 @@ article{
 
 .read-the-docs {
   color: #888;
+}
+
+@media only screen and (min-width: 768px) {
+
+  body{
+    max-width: 800px;
+    margin: auto;
+  }
+
+  header{
+    border-radius:20px;
+    margin-top: 25px;
+  }
+
+  footer{
+    max-width: 800px;
+    border-radius: 5px;
+  }
+
+
+  article {
+    width: 40%
+  }
+
+
+  #listaProvincia{
+    display: none;
+    flex-direction: row
+  }
+  
+  #vistaUnica{
+    display: none;
+    flex-direction: row
+  }
+
+  #singleGas{
+    display: flex;
+    flex-direction: row
+  }
+
+  #infoSingleGas{
+    width: 35%;
+  }
+
+  #mapaSingleGas{
+    width: 50%;
+  }
+
+  #tablaProvincia{
+    width: 35%;
+  }
+  #mapaProvincia{
+    width: 50%;
+  }
+
+  #map4{
+    display: none;
+  }
+
+  #map, #map2, #map3, #map4{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+  }
+
+
 }

@@ -38,10 +38,9 @@ const ProvinciaList = ({ data, eleccion }) => {
 
   return (
     <>
-      <section>
         <h4>Provincia: {eleccion.provinciaElegida} </h4>
         {eleccion.combustibleElegido === "Precio Gasoleo A" ? <h4>Combustible: Diesel</h4> : <h4>Combustible: Gasolina</h4>}
-      </section>
+   
       <div>
         <table {...getTableProps()} style={{ width: '100%' }}>
           <thead>

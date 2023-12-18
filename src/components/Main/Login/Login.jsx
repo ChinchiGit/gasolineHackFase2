@@ -4,6 +4,7 @@ import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import "./Login.css"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,17 +43,14 @@ const Login = () => {
 
   return (
     <>
-      <section className="imgseccion">
-        <h1>GASOLINE HACK</h1>
-        <div className="fondocontent">
-
-        </div>
-        <h4>Ahorrar al repostar</h4>
+      <section >
+        <img id="mainLogo" src="../../../../public/assets/img/gasolinehack.png" alt="Logo gasoline Hack" />
+        <h4 id="subtitulo">Ahorrar al repostar</h4>
       </section>
       <section className="panelsesion">
         {user &&
         <>
-          <img src={user.photoURL} alt="foto Usuario" />
+          <img id="fotoUser" src={user.photoURL} alt="foto Usuario" />
           <h3>Bienvenido {user.displayName}</h3>
           <button><Link to='/home'>Buscar Gasolineras</Link></button>
         </>

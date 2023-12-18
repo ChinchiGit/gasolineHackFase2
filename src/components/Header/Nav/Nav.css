@@ -1,13 +1,14 @@
 nav{
-    background-color:rgba(36, 121, 158, 0.7);
+    width: 100%;
+    background-color: rgba(28, 51, 97, 0.7);
     display: flex;
-    padding: 15px;
+    padding: 5px;
     justify-content: space-between;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
     text-align: left;
-
+    border-radius:5px;
 }
 
 ul {
@@ -25,10 +26,21 @@ input:checked~ul {
     display: none;
 }
 
+#menu-icon{
+    margin-right: 20px;
+    color:white
+}
+
+#canIcon{
+    margin-right: 15px;
+    max-width: 45px;
+    max-height: 45px;
+}
+
 nav>div>label {
     box-sizing: border-box;
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 5px;
     width: 30px;
     height: 30px;

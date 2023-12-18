@@ -8,7 +8,7 @@ const ProvinciaContainer = () => {
   //RECOGE DE CONTEXTO EL CONJUNTO DE GASOLINERAS
   const { gasolinerasList } = useContext(GasolinerasListContext);
   //ESTADO QUE RECOGE DEL FORMULARIO LA PROVINCIA Y TIPO DE COMBUSTIBLE
-  const [eleccionUsuario, setEleccionUsuario] = useState({});
+  const [eleccionUsuario, setEleccionUsuario] = useState("");
   //ESTADO TRAS ACOTAR EL LISTADO OBTENIDO DE CONTEXTO A LA PROVINCIA DESIGNADA.SE MANDA POR PROPS A ProvinciaList Y SE PINTA.  
   const [listadoProvincia, setlistadoProvincia] = useState([]);
 
@@ -33,7 +33,7 @@ const ProvinciaContainer = () => {
         if (a[`${eleccionUsuario.combustibleElegido}`] < b[`${eleccionUsuario.combustibleElegido}`]) {
           return -1;
         }
-    
+
         return 0;
       });
     };
@@ -46,9 +46,18 @@ const ProvinciaContainer = () => {
 
   return (
     <>
-      <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
-      <ProvinciaList data={listadoProvincia} eleccion={eleccionUsuario}/>
-      <Map1provincia data={listadoProvincia}/>
+      <section>
+        <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
+      </section>
+      {eleccionUsuario &&
+        <>
+          <section>
+            <ProvinciaList data={listadoProvincia} eleccion={eleccionUsuario} />
+          </section>
+          <section>
+            <Map1provincia data={listadoProvincia} />
+          </section>
+        </>}
     </>
   )
 };
