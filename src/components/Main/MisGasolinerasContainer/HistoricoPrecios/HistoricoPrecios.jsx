@@ -51,11 +51,8 @@ const HistoricoPrecios = ({idGasolinera}) => {
  
 
   return (
-    <>
-      <article>
-        <Grafica fechas={fechas} preciosDiesel={preciosDiesel} preciosGasolina={preciosGasolina}/>
-      </article>      
-    </>
+    <Grafica fechas={fechas} preciosDiesel={preciosDiesel} preciosGasolina={preciosGasolina}/>
+
   );
 };
 

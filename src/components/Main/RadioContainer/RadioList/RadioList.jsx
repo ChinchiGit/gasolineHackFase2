@@ -35,10 +35,10 @@ const RadioList = ({ data, eleccion }) => {
 
   return (
     <>
-      <section>
+
         <h4>Radio: {eleccion.radio} km. </h4>
         {eleccion.combustible === "Precio Gasoleo A" ? <h4>Combustible: Diesel</h4> : <h4>Combustible: Gasolina</h4>}
-      </section>
+
       <div>
         <table {...getTableProps()} style={{ width: '100%' }}>
           <thead>

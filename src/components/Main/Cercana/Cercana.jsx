@@ -11,42 +11,43 @@ const Cercana = () => {
         <table className="gas-station-card">
           <tbody>
             <tr>
-              <th>Dirección:</th>
+              <td className="tDetailsblue">Dirección:</td>
               <td>{gasolinerasList[0].Dirección}</td>
             </tr>
             <tr>
-              <th>Marca:</th>
+              <td className="tDetailsblue">Marca:</td>
               <td>{gasolinerasList[0].Rótulo}</td>
             </tr>
-            <tr>
-              <th>Localidad:</th>
+            <tr >
+              <td className="tDetailsblue">Localidad:</td>
               <td>{gasolinerasList[0].Localidad}</td>
             </tr>
             <tr>
-              <th>Provincia:</th>
+              <td className="tDetailsblue">Provincia:</td>
               <td>{gasolinerasList[0].Provincia}</td>
             </tr>
             <tr>
-              <th>Precio gasolina:</th>
+              <td className="tDetailsblue">Precio gasolina:</td>
               <td>{gasolinerasList[0]["Precio Gasolina 95 E5"]} €</td>
             </tr>
             <tr>
-              <th>Precio diesel:</th>
+              <td className="tDetailsblue">Precio diesel:</td>
               <td>{gasolinerasList[0]["Precio Gasoleo A"]} €</td>
             </tr>
             <tr>
-              <th>Horario:</th>
+              <td className="tDetailsblue">Horario:</td>
               <td>{gasolinerasList[0].Horario}</td>
             </tr>
             <tr>
-              <th>Distancia:</th>
+              <td className="tDetailsblue">Distancia:</td>
               <td>{gasolinerasList[1].distancia} Km</td>
             </tr>
           </tbody>
         </table>
       </section>
-
-      <Mapas />
+      <section>
+        <Mapas />
+      </section>
     </>
   );
 };

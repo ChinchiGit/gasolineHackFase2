@@ -4,7 +4,6 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Importa tu ícono personalizado
 // import customIcon from '.assets/images/gasoline-icon.png';
 
 const Map1provincia= ({data}) => {
@@ -33,7 +32,7 @@ const Map1provincia= ({data}) => {
   return (
     <>
       {data.length > 0 && (
-        <MapContainer center={[data[0].Latitud, data[0]["Longitud (WGS84)"]]} zoom={10} style={{ height: '400px', width: '400px' }}>
+        <MapContainer center={[data[0].Latitud, data[0]["Longitud (WGS84)"]]} zoom={10} style={{ height: '400px', width: '90%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {paintMapList()}
           {/* <Marker position={[gasolinerasList[0].Latitud, gasolinerasList[0]["Longitud (WGS84)"]]} /> */}

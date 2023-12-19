@@ -44,47 +44,49 @@ const DetailsContainer = () => {
   return (
     <>
       <section>
-        <article>
-        <table className="gas-station-card">
+        
+        <table >
           <tbody>
             <tr>
-              <th>Dirección:</th>
+              <td className="tDetailsblue">Dirección:</td>
               <td>{gasolineraDetails.Dirección}</td>
             </tr>
             <tr>
-              <th>Marca:</th>
+              <td className="tDetailsblue">Marca:</td>
               <td>{gasolineraDetails.Rótulo}</td>
             </tr>
             <tr>
-              <th>Localidad:</th>
+              <td className="tDetailsblue">Localidad:</td>
               <td>{gasolineraDetails.Localidad}</td>
             </tr>
             <tr>
-              <th>Provincia:</th>
+              <td className="tDetailsblue">Provincia:</td>
               <td>{gasolineraDetails.Provincia}</td>
             </tr>
             <tr>
-              <th>Precio gasolina:</th>
+              <td className="tDetailsblue">Precio gasolina:</td>
               <td>{gasolineraDetails["Precio Gasolina 95 E5"]} €</td>
             </tr>
             <tr>
-              <th>Precio diesel:</th>
+              <td className="tDetailsblue">Precio diesel:</td>
               <td>{gasolineraDetails["Precio Gasoleo A"]} €</td>
             </tr>
             <tr>
-              <th>Horario:</th>
+              <td className="tDetailsblue">Horario:</td>
               <td>{gasolineraDetails.Horario}</td>
             </tr>
             <tr>
-              <th>Distancia:</th>
+              <td className="tDetailsblue">Distancia:</td>
               <td>{gasolineraDetails.distancia} Km</td>
             </tr>
           </tbody>
         </table>
-        </article>
-        {user && <article><button onClick={addGasolinera}>AÑADIR A FAVORITAS</button></article>}
+        
+        {user && <button onClick={addGasolinera}>AÑADIR A FAVORITAS</button>}
       </section>
-      <MapasDetails/>
+      <section>
+        <MapasDetails/>
+      </section>
 
     </>
   );

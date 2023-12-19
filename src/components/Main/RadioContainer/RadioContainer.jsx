@@ -3,12 +3,13 @@ import RadioForm from "./RadioForm/RadioForm";
 import RadioList from "./RadioList/RadioList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
 import Map1radio from "./RadioList/Map1radio/Map1radio";
+import "./RadioContainer.css"
 
 const RadioContainer = () => {
   // RECOGE DE CONTEXTO EL LISTADO TOTAL DEPURADO
   const { gasolinerasList } = useContext(GasolinerasListContext);
   //RECOGE DEL FORMULARIO EL RADIO DE BUSQEDA Y TIPO DE COMBUSTIBLE
-  const [eleccionUsuario, setEleccionUsuario] = useState({});
+  const [eleccionUsuario, setEleccionUsuario] = useState("");
   //ESTADO TRAS ACOTAR EL LISTADO OBTENIDO DE CONTEXTO AL RADIO ELEGIDO.SE ENVIA POR PROPS A RadioList Y SE PINTA.  
   const [listadoRadio, setlistadoRadio] = useState([]);
 
@@ -46,9 +47,19 @@ const RadioContainer = () => {
 
   return (
     <>
+      <section id="radioForm">
       <RadioForm setEleccionUsuario={setEleccionUsuario} />
-      <RadioList data={listadoRadio} eleccion={eleccionUsuario} />
-      <Map1radio data={listadoRadio}/>
+      </section>
+      {eleccionUsuario &&
+      <>
+        <section>
+        <RadioList data={listadoRadio} eleccion={eleccionUsuario} />
+        </section>
+        <section>
+        <Map1radio data={listadoRadio}/>
+        </section>
+      </>
+      }
     </>
   )
 };

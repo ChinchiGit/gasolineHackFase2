@@ -32,7 +32,8 @@ const RadioForm = ({setEleccionUsuario}) => {
   return (
     <>
       <label>
-        Radio de búsqueda:
+        Radio de búsqueda: 
+        
         <input
           type="range"
           min="5"
@@ -41,11 +42,11 @@ const RadioForm = ({setEleccionUsuario}) => {
           value={rangeValue}
           onChange={handleRangeChange}
         />
-        <span>{rangeValue} Km. </span>
       </label>
+      <span>{rangeValue} Km. </span>
 
       <label>
-        Tipo de combustible:
+        Tipo de combustible:   
         <select name="combustibleElegido" onChange={handleFuelChange} required>
           <option value="Precio Gasoleo A">Diesel</option>
           <option value="Precio Gasolina 95 E5">Gasolina</option>

@@ -84,6 +84,27 @@ form{
   color: white;
 }
 
+.mapContainer{
+  margin-left:auto;
+  margin-right: auto;
+
+}
+
+#root > main > section:nth-child(2) > div > div{
+  margin-left:auto;
+  margin-right: auto;
+
+}
+#root > main > section:nth-child(3) > div{
+  margin-left:auto;
+  margin-right: auto;
+
+}
+
+
+.contenedorGrafica{
+  background-color: aliceblue;
+}
 
 .logo {
   height: 6em;

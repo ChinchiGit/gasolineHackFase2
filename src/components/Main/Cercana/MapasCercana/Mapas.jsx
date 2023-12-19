@@ -17,7 +17,7 @@ const MapaConAmbos = () => {
         {mostrarMap1 ? "Cómo Llegar" : "Volver"}
       </button>
 
-      <MapContainer center={[0, 0]} zoom={12} style={{ height: '400px', width: '400px' }}>
+      <MapContainer center={[0, 0]} zoom={12} style={{ height: '400px', width: '90%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />

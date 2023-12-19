@@ -87,36 +87,34 @@ const MisGasolinerasContainer = () => {
       return datosApiMG.map((element, i) => (
         <>
           <section>
-            <article>
-            <table className="gas-station-card">
+
+            <table >
               <tbody>
                 <tr>
-                  <th>Dirección:</th>
+                  <td className="tDetailsblue">Dirección:</td>
                   <td>{element.Dirección}</td>
                 </tr>
                 <tr>
-                  <th>Localidad:</th>
+                  <td className="tDetailsblue">Localidad:</td>
                   <td>{element.Localidad}</td>
                 </tr>
                 <tr>
-                  <th>Precio gasolina hoy:</th>
+                  <td className="tDetailsblue">Precio gasolina hoy:</td>
                   <td>{element["Precio Gasolina 95 E5"]} €</td>
                 </tr>
                 <tr>
-                  <th>Precio diesel hoy:</th>
+                  <td className="tDetailsblue">Precio diesel hoy:</td>
                   <td>{element["Precio Gasoleo A"]} €</td>
                 </tr>
               </tbody>
             </table>
-            </article>
-            <article>
+
               <button><Link  to={ruta(element.IDEESS)}>DETALLES</Link></button>
               <button onClick={() => addPrecio(element, i)}>GUARDAR PRECIO</button>
-            </article>
-          </section>
-          <section>
 
+            <article className="contenedorGrafica">
               <HistoricoPrecios idGasolinera={misGasolineras[i].idGasolinera}/>
+            </article>
           </section>
 
         </>
