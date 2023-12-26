@@ -17,10 +17,10 @@ const Nav = () => {
           <input type="checkbox" id="menu" />
           <label htmlFor="menu" id="menu-icon">☰</label>
           <ul>
-            <li><Link to='/home'>HOME</Link></li>
-            <li><Link to='/cercana'>GASOLINERA MAS CERCANA</Link></li>
-            <li><Link to='/provincia'>BUSCAR POR PROVINCIA</Link></li>
-            <li><Link to='/radio'>BUSCAR POR RADIO</Link></li>
+            <li ><Link to='/home'>HOME</Link></li>
+            <li ><Link to='/cercana'>GASOLINERA MAS CERCANA</Link></li>
+            <li ><Link to='/provincia'>BUSCAR POR PROVINCIA</Link></li>
+            <li ><Link to='/radio'>BUSCAR POR RADIO</Link></li>
             {user &&
               <>
                 <li><Link to='/misgasolineras'>MIS GASOLINERAS</Link></li>

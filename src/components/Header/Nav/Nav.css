@@ -9,6 +9,7 @@ nav{
     font-weight: 400;
     text-align: left;
     border-radius:5px;
+    color:black;
 }
 
 ul {
@@ -50,9 +51,13 @@ nav>div>label {
     user-select: none;
 }
 
+nav>a{
+    color:black;
+}
+
 li {
     display: block;
-    background: lightgrey;
+    background: rgb(138, 138, 138);
     margin: 0;
     padding: 10px;
     list-style: none;

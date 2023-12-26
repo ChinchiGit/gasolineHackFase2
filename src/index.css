@@ -19,14 +19,6 @@ html{
   background-size: cover;
 }
 
-a {
-  font-weight: 500;
-  color: rgb(255, 255, 255);
-  text-decoration: inherit;
-}
-a:hover {
-  color: #FB3640;
-}
 
 body {
   margin-top: 0;

@@ -8,6 +8,7 @@ import RadioContainer from "./RadioContainer/RadioContainer";
 import DetailsContainer from "./DetailsContainer/DetailsContainer";
 import MisGasolinerasContainer from "./MisGasolinerasContainer/MisGasolinerasContainer";
 import LogOut from "./LogOut/LogOut";
+import "./Main.css"
 
 
 const Main = () => {
