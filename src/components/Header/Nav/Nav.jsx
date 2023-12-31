@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { UserAuth } from "../../../context/AuthContext";
 import "./Nav.css"
 
+
 const Nav = () => {
   const { user } = UserAuth();
 
@@ -11,7 +12,7 @@ const Nav = () => {
       <nav>
 
         <div>
-          <Link to='/login'><img id="canIcon" src="../../../../public/assets/img/nav_icon01.png" alt="Logo GasolineHack" /></Link>
+          <Link to='/login'><img id="canIcon" src="/assets/img/nav_icon01.png" alt="Logo GasolineHack" /></Link>
         </div>
         <div id="desplegable">
           <input type="checkbox" id="menu" />

@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <>
       <section >
-        <img id="mainLogo" src="../../../../public/assets/img/gasolinehack.png" alt="Logo gasoline Hack" />
+        <img id="mainLogo" src="/assets/img/gasolinehack.png" alt="Logo gasoline Hack" />
         <h4 id="subtitulo">Ahorrar al repostar</h4>
       </section>
       <section className="panelsesion">
