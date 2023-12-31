@@ -11,7 +11,7 @@ const HistoricoPrecios = ({idGasolinera}) => {
     let preciosUser;
     async function getPreciosGasolinera() {
       // const idBus = "carloschinchillamoreno@gmail.com";
-      const endpoint = `http://localhost:3000/gasolineras//all-gasstation-prices?idGasolinera=${idGasolinera}`;
+      const endpoint = `https://gasolinehack-back.onrender.com/gasolineras/all-gasstation-prices?idGasolinera=${idGasolinera}`;
 
 
       try {

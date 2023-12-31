@@ -20,7 +20,7 @@ const Login = () => {
     const addUser = async () => {
       const email = user.email;
       const name = user.displayName;
-      const endpoint = "http://localhost:3000/usuarios/create";
+      const endpoint = "https://gasolinehack-back.onrender.com/usuarios/create";
 
       try {
         const response = await axios.post(endpoint, {
