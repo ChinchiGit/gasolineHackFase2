@@ -4,6 +4,7 @@ import axios from "axios";
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
 import { UserAuth } from "../../../context/AuthContext";
 import HistoricoPrecios from "./HistoricoPrecios/HistoricoPrecios"
+import SpinnerMG from "./SpinnerMG/SpinnerMG";
 
 const MisGasolinerasContainer = () => {
   const { user } = UserAuth();
@@ -121,7 +122,7 @@ const MisGasolinerasContainer = () => {
       ));
     } else {
       return (
-        <p>Ha habido un error</p>
+        <SpinnerMG/>
       )
 
     }

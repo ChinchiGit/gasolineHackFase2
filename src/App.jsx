@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider, UserAuth } from "./context/AuthContext";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Footer from "./components/Footer";
 import Spinner from './components/Spinner/Spinner';
 import axios from 'axios';
 import "./App.css"
@@ -162,12 +163,13 @@ function App() {
                 <>
                   <Header/>
                   <Main/>
+                  <Footer/>
                 </>
               }
             </UserUbicationContext.Provider>
           </GasolinerasListContext.Provider>
         </AuthContextProvider>
-        {/* <Footer/> */}
+        
       </BrowserRouter>
     </>
   )
