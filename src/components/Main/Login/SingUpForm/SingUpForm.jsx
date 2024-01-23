@@ -86,7 +86,7 @@ const SingUpForm = () => {
         }}/>
         </div>
         <div>
-          <input type={showPassword ? "text" : "password"} name="pass" className="log" placeholder="Confirma tu contraseña" onChange={handleInputs}  style={{
+          <input type={showPassword ? "text" : "password"} name="confirm" className="log" placeholder="Confirma tu contraseña" onChange={handleInputs}  style={{
           width: '178px',
           height: '25px',
           marginRight: '5px'
