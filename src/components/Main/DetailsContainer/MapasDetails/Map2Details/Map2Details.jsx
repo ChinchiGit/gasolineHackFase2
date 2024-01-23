@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { TileLayer, Marker } from 'react-leaflet';
+import { TileLayer, Marker , Popup} from 'react-leaflet';
 import { useMap } from 'react-leaflet';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
@@ -15,7 +15,7 @@ const Map2Details = () => {
   const customMarkerIcon = new L.Icon({
     iconUrl: "/assets/img/dispenser.png",
     iconSize: [55, 55], // Tamaño del ícono
-    iconAnchor: [5, 5], // Punto de anclaje del ícono
+    iconAnchor: [0, 0], // Punto de anclaje del ícono
 
   });
 
@@ -69,7 +69,11 @@ const Map2Details = () => {
         <>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Marker position={start}></Marker>
-          <Marker position={end} icon={customMarkerIcon}></Marker>
+          <Marker position={end} icon={customMarkerIcon}>
+            <Popup>
+              <b>{gasolineraDetails.Dirección}</b><br/>Gasolina : {gasolineraDetails["Precio Gasolina 95 E5"]} €<br/>Diesel: {gasolineraDetails["Precio Gasoleo A"]} €
+            </Popup>
+          </Marker>
         </>
       )}
     </>

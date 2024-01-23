@@ -1,6 +1,6 @@
 // Mapa con marcadores personalizados en Leaflet
 import React from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -11,14 +11,18 @@ const Map1provincia= ({data}) => {
   const customMarkerIcon = new L.Icon({
     iconUrl: "/assets/img/dispenser.png",
     iconSize: [55, 55], // Tamaño del ícono
-    iconAnchor: [5, 5], // Punto de anclaje del ícono
+    iconAnchor: [0, 0], // Punto de anclaje del ícono
 
   });
 
 
   const paintMapList = () => {
     return data.slice(0,9).map((element) => (
-      <Marker position={[element.Latitud, element["Longitud (WGS84)"]]} icon={customMarkerIcon}/>      
+      <Marker position={[element.Latitud, element["Longitud (WGS84)"]]} icon={customMarkerIcon}>
+        <Popup>
+          <b>{element.Dirección}</b><br/>Gasolina : {element["Precio Gasolina 95 E5"]} €<br/>Diesel: {element["Precio Gasoleo A"]} €
+        </Popup>
+      </Marker>      
     ));
   };
 

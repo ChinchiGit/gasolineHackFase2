@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from "react";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import SingUpForm from './SingUpForm/SingUpForm';
 import "./Login.css"
+import SingInForm from './SingInForm/SingInForm';
 
 const Login = () => {
   const navigate = useNavigate();
   const { user, googleSignIn } = UserAuth();
+  const [registrar, setRegistrar] = useState(false)
+
+  //Mostrar SingUp y ocultar 
+  const handleToggleRegistrar = () => {
+    setRegistrar((prevRegistrar) => !prevRegistrar);
+  };
+
   const iniciarSesion = async () => {
     try {
       await googleSignIn();
@@ -49,29 +58,50 @@ const Login = () => {
       </section>
       <section className="panelsesion">
         {user &&
-        <>
-          <img id="fotoUser" src={user.photoURL} alt="foto Usuario" />
-          <h3>Bienvenido {user.displayName}</h3>
-          <button><Link to='/home'>Buscar Gasolineras</Link></button>
-        </>
-        
+          <>
+            <img id="fotoUser" src={user.photoURL} alt="foto Usuario" />
+            <h3>Bienvenido {user.displayName}</h3>
+            <button><Link to='/home'>Buscar Gasolineras</Link></button>
+          </>
+
         }
 
         {!user &&
           <>
-            <h2>Iniciar sesión</h2>
+            
+            {registrar == false ?
+              <>
+                <h2>Iniciar sesión</h2>
+                <SingInForm />
+                <p>¿No tienes cuenta? <b onClick={handleToggleRegistrar} style={{
+                  cursor: 'pointer'
+                }}>¡Regístrate!</b></p>
+              </>
+                :
+              <>
+                <h2>Registro</h2>
+                <SingUpForm/>
+                <p>¡Ya estoy registrado! <b onClick={handleToggleRegistrar} style={{
+                  cursor: 'pointer'
+                }}>Volver</b></p>
 
-            <button onClick={iniciarSesion} className="btniniciar">
+              </>
+            }
 
-              <span> Iniciar con Gmail</span>
-            </button>
 
-            <button><Link to='/home'>Entrar como invitado</Link></button>
-          </>
+                <article>
+                  <button onClick={iniciarSesion} className="btniniciar">
+
+                    <span> Iniciar con Gmail</span>
+                  </button>
+
+                  <button><Link to='/home'>Entrar como invitado</Link></button>
+                </article>
+              </>
         }
-      </section>
-    </>
-  );
+          </section>
+      </>
+      );
 }
 
-export default Login;
+      export default Login;
