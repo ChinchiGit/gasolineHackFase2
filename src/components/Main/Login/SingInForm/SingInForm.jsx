@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { UserAuth } from "../../../../context/AuthContext";
 import "./SingInForm.css";
@@ -35,7 +36,7 @@ const SingInForm = () => {
 
   function validarPassword(pasword) {
     // Expresión regular para validar la contraseña
-    var regex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    var regex = /^.{6,}$/;
 
     // Comprobar si la contraseña coincide con la expresión regular
     return regex.test(pasword);
@@ -52,11 +53,14 @@ const SingInForm = () => {
     } else if (validarPassword(inputs.pass) == false) {
       alert("La contraseña debe contener al menos 6 caracteres, un número y una mayúscula")
     } else {
-      emailPasswordSignIn(inputs.mail, inputs.pass);
-      setInputs({
-        mail: "",
-        pass: "",
-      });
+      try {emailPasswordSignIn(inputs.mail, inputs.pass)
+      } catch(error){
+        alert("Mail o contraseña incorrectas")
+      }
+      // setInputs({
+      //   mail: "",
+      //   pass: "",
+      // });
     }
   }
 
@@ -80,6 +84,7 @@ const SingInForm = () => {
             cursor: 'pointer'
           }}>👀</span>
         </div>
+        <p>No recuerdo mi contraseña. <Link to='/password-reset'>Recuperar</Link></p>
         <div>
           <button onClick={handleSubmit}>Login</button>
         </div>

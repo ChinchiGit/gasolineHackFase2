@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../../src/config/firebaseAuth";
 
@@ -13,7 +14,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-
+  
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
@@ -27,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
         console.log('Usuario ha iniciado sesión:', user);
       })
       .catch((error) => {
+        alert("Credenciales incorrectas. Por favor, verifica tu correo electrónico y contraseña e inténtalo nuevamente.")
         console.error('Error al iniciar sesión con correo/contraseña:', error.message);
       });
   };
@@ -39,12 +41,24 @@ export const AuthContextProvider = ({ children }) => {
         console.log('Usuario se ha registrado:', user);
       })
       .catch((error) => {
+
         console.error('Error al registrarse con correo/contraseña:', error.message);
       });
   };
 
   const logOut = () => {
     signOut(auth);
+  };
+
+  const resetPassword = async (email) => {
+      try {
+        await sendPasswordResetEmail(auth, email);
+        return true
+      } catch (error) {
+        alert(error.message);
+        return false
+      }
+    
   };
 
   useEffect(() => {
@@ -58,7 +72,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ googleSignIn, emailPasswordSignIn, emailPasswordSignUp, logOut, user }}>
+    <AuthContext.Provider value={{ googleSignIn, emailPasswordSignIn, emailPasswordSignUp, logOut, resetPassword, user }}>
       {children}
     </AuthContext.Provider>
   );

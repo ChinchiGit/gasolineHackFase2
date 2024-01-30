@@ -68,7 +68,7 @@ const Login = () => {
 
         {!user &&
           <>
-            
+
             {registrar == false ?
               <>
                 <h2>Iniciar sesión</h2>
@@ -77,10 +77,10 @@ const Login = () => {
                   cursor: 'pointer'
                 }}>¡Regístrate!</b></p>
               </>
-                :
+              :
               <>
                 <h2>Registro</h2>
-                <SingUpForm/>
+                <SingUpForm />
                 <p>¡Ya estoy registrado! <b onClick={handleToggleRegistrar} style={{
                   cursor: 'pointer'
                 }}>Volver</b></p>
@@ -89,19 +89,19 @@ const Login = () => {
             }
 
 
-                <article>
-                  <button onClick={iniciarSesion} className="btniniciar">
+            <article>
+              <button onClick={iniciarSesion} className="btniniciar">
 
-                    <span> Iniciar con Gmail</span>
-                  </button>
+                <span> Iniciar con Gmail</span>
+              </button>
 
-                  <button><Link to='/home'>Entrar como invitado</Link></button>
-                </article>
-              </>
+              <button><Link to='/home'>Entrar como invitado</Link></button>
+            </article>
+          </>
         }
-          </section>
-      </>
-      );
+      </section>
+    </>
+  );
 }
 
-      export default Login;
+export default Login;
