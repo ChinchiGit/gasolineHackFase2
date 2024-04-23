@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import { Link } from 'react-router-dom';
 import { UserAuth } from "../../../context/AuthContext";
 import "./Nav.css"
@@ -6,16 +6,37 @@ import "./Nav.css"
 
 const Nav = () => {
   const { user } = UserAuth();
+  const [isChecked, setIsChecked] = useState(false);
+  const timerRef = useRef();
+
+  const handleInputChange = (event) => {
+    setIsChecked(event.target.checked);
+    if (event.target.checked) {
+      timerRef.current = setTimeout(() => {
+        setIsChecked(false);
+      }, 6000);
+    } else {
+      clearTimeout(timerRef.current);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    clearTimeout(timerRef.current);
+  };
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current); // Limpiar el temporizador al desmontar el componente
+  }, []);
 
   return (
     <>
-      <nav>
+      <nav onMouseEnter={handleMouseEnter}>
 
         <div>
           <Link to='/login'><img id="canIcon" src="/assets/img/nav_icon01.png" alt="Logo GasolineHack" /></Link>
         </div>
         <div id="desplegable">
-          <input type="checkbox" id="menu" />
+          <input type="checkbox" id="menu" checked={isChecked} onChange={handleInputChange}/>
           <label htmlFor="menu" id="menu-icon">☰</label>
           <ul>
             <li ><Link to='/home'>HOME</Link></li>
