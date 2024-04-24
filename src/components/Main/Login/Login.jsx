@@ -61,7 +61,7 @@ const Login = () => {
           <>
             <img id="fotoUser" src={user.photoURL} alt="foto Usuario" />
             <h3>Bienvenido {user.displayName}</h3>
-            <button><Link to='/home'>Buscar Gasolineras</Link></button>
+            <Link to='/home'><button>Buscar Gasolineras</button></Link>
           </>
 
         }

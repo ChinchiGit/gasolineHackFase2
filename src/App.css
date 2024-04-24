@@ -1,9 +1,9 @@
 #root {
-  --rojoHoover: #FB3640; 
+  --rojoHoover: #FB3640;
   --grey: rgb(95, 94, 93);
   --blueMain: rgb(28, 51, 97);
   --blueFondo: #1F487E;
-  --blueClear : rgb(36, 121, 158);
+  --blueClear: rgb(36, 121, 158);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -15,7 +15,7 @@
   font-weight: 400;
 
 
-  
+
 }
 
 body {
@@ -30,10 +30,10 @@ main {
 
 footer {
   margin-top: auto;
-  flex-shrink: 0;
+ 
 }
 
-section{
+section {
   background-color: rgba(36, 121, 158, 0.7);
   width: 95%;
   border-radius: 15px;
@@ -42,12 +42,10 @@ section{
   margin-bottom: 15px;
   padding-top: 20px;
   padding-bottom: 20px;
-  display: flex;
-  flex-direction: column;
 }
 
 
-article{
+article {
   background-color: rgba(36, 121, 158, 0.7);
   width: 80%;
   border-radius: 15px;
@@ -58,13 +56,14 @@ article{
 }
 
 
-table{
-  width: 90% !important;;
-  margin:auto;
+table {
+  width: 90% !important;
+  ;
+  margin: auto;
   border-color: black;
   border-width: 1px;
   border-style: ridge;
-  text-align: center;     
+  text-align: center;
   margin: 40px auto;
   border-collapse: collapse;
   background-color: var(--grey);
@@ -77,52 +76,59 @@ button {
   width: 200px;
 }
 
-td{
+td {
   border-color: black;
   border-width: 1px;
   border-style: ridge;
   width: 25%;
   padding: 5px;
- 
+
 }
 
-th{
+th {
   background-color: var(--blueFondo);
   border-color: black;
   border-width: 1px;
   border-style: ridge;
   padding: 5px;
-  
+
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
 }
 
-.mapContainer{
-  margin-left:auto;
+.mapContainer {
+  margin-left: auto;
   margin-right: auto;
 
 }
 
-#root > main > section:nth-child(2) > div > div{
-  margin-left:auto;
-  margin-right: auto;
-
-}
-#root > main > section:nth-child(3) > div{
-  margin-left:auto;
+#root>main>section:nth-child(2)>div>div {
+  margin-left: auto;
   margin-right: auto;
 
 }
 
+#root>main>section:nth-child(3)>div {
+  margin-left: auto;
+  margin-right: auto;
 
-.contenedorGrafica{
+}
+
+
+.contenedorGrafica {
   background-color: aliceblue;
 }
+
+#mainLogo{
+  max-width:60%;
+};
+
+
 
 .logo {
   height: 6em;
@@ -130,9 +136,11 @@ form{
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -148,11 +156,17 @@ form{
 
 @media only screen and (min-width: 768px) {
 
-  body{
+  body {
     max-width: 800px;
     height: 100%;
     margin: auto;
   }
+
+  #mainLogo {
+    max-width: 60%;
+  }
+
+  ;
 
 
 }
