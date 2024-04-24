@@ -146,6 +146,7 @@ sup {
  */
 
 img {
+  max-width: 80%;
   border-style: none;
 }
 
