@@ -4,12 +4,21 @@ import { useMap } from 'react-leaflet';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import { UserUbicationContext } from '../../../../../context/UserUbicationContext';
 import { GasolinerasListContext } from '../../../../../context/GasolinerasListContext';
+import '../../../../../config/leafletConfig'; // Importamos la configuración de Leaflet
 import L from 'leaflet';
 import 'leaflet-routing-machine';
 
 const Map2 = () => {
   const { ubicacionUsuario } = useContext(UserUbicationContext);
   const { gasolinerasList } = useContext(GasolinerasListContext);
+
+  delete L.Icon.Default.prototype._getIconUrl;
+
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: '/images/marker-icon-2x.png',
+    iconUrl: '/images/marker-icon.png',
+    shadowUrl: '/images/marker-shadow.png',
+  });
 
   const customMarkerIcon = new L.Icon({
     iconUrl: "/assets/img/dispenser.png",
@@ -52,9 +61,9 @@ const Map2 = () => {
       {start && <Marker position={start}></Marker>}
       {end && <Marker position={end} icon={customMarkerIcon}>
         <Popup>
-          <b>{gasolinerasList[0].Dirección}</b><br/>Gasolina : {gasolinerasList[0]["Precio Gasolina 95 E5"]} €<br/>Diesel: {gasolinerasList[0]["Precio Gasoleo A"]} €
+          <b>{gasolinerasList[0].Dirección}</b><br />Gasolina : {gasolinerasList[0]["Precio Gasolina 95 E5"]} €<br />Diesel: {gasolinerasList[0]["Precio Gasoleo A"]} €
         </Popup>
-        
+
       </Marker>}
     </>
   );
