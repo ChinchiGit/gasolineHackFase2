@@ -14,11 +14,11 @@ const Map2 = () => {
 
   delete L.Icon.Default.prototype._getIconUrl;
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: '/images/marker-icon-2x.png',
-  iconUrl: '/images/marker-icon.png',
-  shadowUrl: '/images/marker-shadow.png',
-});
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: '/images/marker-icon-2x.png',
+    iconUrl: '/images/marker-icon.png',
+    shadowUrl: '/images/marker-shadow.png',
+  });
 
   const customMarkerIcon = new L.Icon({
     iconUrl: "/assets/img/dispenser.png",
@@ -61,9 +61,9 @@ L.Icon.Default.mergeOptions({
       {start && <Marker position={start}></Marker>}
       {end && <Marker position={end} icon={customMarkerIcon}>
         <Popup>
-          <b>{gasolinerasList[0].Dirección}</b><br/>Gasolina : {gasolinerasList[0]["Precio Gasolina 95 E5"]} €<br/>Diesel: {gasolinerasList[0]["Precio Gasoleo A"]} €
+          <b>{gasolinerasList[0].Dirección}</b><br />Gasolina : {gasolinerasList[0]["Precio Gasolina 95 E5"]} €<br />Diesel: {gasolinerasList[0]["Precio Gasoleo A"]} €
         </Popup>
-        
+
       </Marker>}
     </>
   );
