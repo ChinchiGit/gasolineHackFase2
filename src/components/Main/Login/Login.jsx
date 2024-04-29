@@ -95,7 +95,7 @@ const Login = () => {
                 <span> Iniciar con Gmail</span>
               </button>
 
-              <button><Link to='/home'>Entrar como invitado</Link></button>
+              <Link to='/home'><button>Entrar como invitado</button></Link>
             </article>
           </>
         }
