@@ -3,7 +3,7 @@ import { GasolinerasListContext } from './context/GasolinerasListContext';
 import { UserUbicationContext } from "./context/UserUbicationContext"
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider, UserAuth } from "./context/AuthContext";
-import './config/leafletConfig';
+
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
