@@ -84,7 +84,7 @@ const DetailsContainer = () => {
         
         {user && <button onClick={addGasolinera}>AÑADIR A FAVORITAS</button>}
       </section>
-      <section>
+      <section className="mapasSection">
         <MapasDetails/>
       </section>
 

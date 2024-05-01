@@ -15,7 +15,12 @@
     background-color: #f2f2f2;
   } */
 
-  .tDetailsblue{
+.tDetailsblue{
     background-color: rgb(28, 51, 97);
     width: 20%;
   }
+
+.mapasSection h2,
+.mapasSection h3 {
+  color: black;
+}
