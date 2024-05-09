@@ -4,6 +4,7 @@ import axios from "axios";
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
 import { UserAuth } from "../../../context/AuthContext";
 import HistoricoPrecios from "./HistoricoPrecios/HistoricoPrecios"
+import SpinnerMG from "./SpinnerMG/SpinnerMG";
 
 const MisGasolinerasContainer = () => {
   const { user } = UserAuth();
@@ -18,7 +19,7 @@ const MisGasolinerasContainer = () => {
     let gasolinerasUser;
     async function fetchData() {
       const email = user.email;
-      const endpoint = `http://localhost:3000/usuarios/all-user-gasstation?email=${email}`;
+      const endpoint = `https://gasolinehack-back.onrender.com/usuarios/all-user-gasstation?email=${email}`;
 
 
       try {
@@ -57,7 +58,7 @@ const MisGasolinerasContainer = () => {
       const precioGasolina = guardarPrecio["Precio Gasolina 95 E5"];
       const precioDiesel= guardarPrecio["Precio Gasoleo A"];
   
-      const endpoint = "http://localhost:3000/precios/create";
+      const endpoint = "https://gasolinehack-back.onrender.com/precios/create";
   
       try {
         const response = await axios.post(endpoint, {
@@ -85,6 +86,7 @@ const MisGasolinerasContainer = () => {
     if (datosApiMG.length > 0) {
       
       return datosApiMG.map((element, i) => (
+        
         <>
           <section>
 
@@ -121,7 +123,7 @@ const MisGasolinerasContainer = () => {
       ));
     } else {
       return (
-        <p>Ha habido un error</p>
+        <SpinnerMG/>
       )
 
     }

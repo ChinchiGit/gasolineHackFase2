@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./Login/Login";
+import PasswordReset from "./Login/SingInForm/PasswordReset/PasswordReset";
 import Home from "./Home/Home";
 import Cercana from "./Cercana/Cercana";
 import ProvinciaContainer from "./ProvinciaContainer/ProvinciaContainer";
@@ -8,6 +9,9 @@ import RadioContainer from "./RadioContainer/RadioContainer";
 import DetailsContainer from "./DetailsContainer/DetailsContainer";
 import MisGasolinerasContainer from "./MisGasolinerasContainer/MisGasolinerasContainer";
 import LogOut from "./LogOut/LogOut";
+
+import "./Main.css"
+
 
 
 const Main = () => {
@@ -24,6 +28,7 @@ const Main = () => {
           <Route path="/detalles/:id" element={<DetailsContainer/>} />
           <Route path="/misgasolineras" element={<MisGasolinerasContainer/>} />
           <Route path="/logout" element={<LogOut/>} />
+          <Route path="/password-reset" element={<PasswordReset/>} />
           <Route path="/*" element={<Navigate to={"/"} />} />
           
         </Routes>

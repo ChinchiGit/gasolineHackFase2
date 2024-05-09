@@ -22,7 +22,7 @@ const LogOut = () => {
     <section>
       <h2>¡Hasta Pronto!</h2>
       <p>Nos ha encantado verte por aquí. Ojalá te hayamos ayudado a <b>AHORRAR AL REPOSTAR</b> </p>
-      <button><Link  to='/'>INICIO</Link></button>
+      <Link  to='/'><button>INICIO</button></Link>
     </section>
   );
 };

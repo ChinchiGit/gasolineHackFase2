@@ -1,0 +1,13 @@
+.spinner{
+    width: 80%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    color: rgb(28, 51, 97);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.spinner>img{
+    width: 100px;
+}

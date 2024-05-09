@@ -26,7 +26,7 @@ const DetailsContainer = () => {
   const addGasolinera = async ()=> {
     const email = user.email;
     const idEnApi = location.pathname.split(":").pop();
-    const endpoint = "http://localhost:3000/gasolineras/create"
+    const endpoint = "https://gasolinehack-back.onrender.com/gasolineras/create"
 
     try {
       const response = await axios.post(endpoint, {
@@ -84,7 +84,7 @@ const DetailsContainer = () => {
         
         {user && <button onClick={addGasolinera}>AÑADIR A FAVORITAS</button>}
       </section>
-      <section>
+      <section className="mapasSection">
         <MapasDetails/>
       </section>
 

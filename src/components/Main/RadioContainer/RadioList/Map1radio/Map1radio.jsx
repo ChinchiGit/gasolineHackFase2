@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import customIcon from '../../../../../../public/assets/img/dispenser.png';
+
 
 const Map1radio= ({data}) => {
   
@@ -10,9 +10,9 @@ const Map1radio= ({data}) => {
   
 
   const customMarkerIcon = new L.Icon({
-    iconUrl: customIcon,
+    iconUrl: "/assets/img/dispenser.png",
     iconSize: [55, 55], // Tamaño del ícono
-    iconAnchor: [5, 5], // Punto de anclaje del ícono
+    iconAnchor: [0, 0], // Punto de anclaje del ícono
 
   });
 

@@ -1,0 +1,35 @@
+footer {
+    width: 100%;
+    background-color: rgba(28, 51, 97, 0.7);  
+    padding: 10, 10, 10, 0px;
+    
+    
+}
+
+#footerSup{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: x-small;
+}
+
+#contacto{
+    display: flex;
+    flex-direction: column;
+
+}
+
+#footerInf{
+    width: 95%;
+    background-color:  rgba(95, 94, 93, 0.5);
+    margin-bottom: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: xx-small;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -2,14 +2,15 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyDKNLrPv-5xXxVosfyJ-iKjGNOGh88M52c",
-  authDomain: "gasoline-hack-4d043.firebaseapp.com",
-  projectId: "gasoline-hack-4d043",
-  storageBucket: "gasoline-hack-4d043.appspot.com",
-  messagingSenderId: "1081455038917",
-  appId: "1:1081455038917:web:84d777bcc852a391597bac",
-  measurementId: "G-K4HVMSSMSH"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
+
 
 
 // Initialize Firebase

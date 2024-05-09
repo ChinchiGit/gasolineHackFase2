@@ -3,8 +3,11 @@ import { GasolinerasListContext } from './context/GasolinerasListContext';
 import { UserUbicationContext } from "./context/UserUbicationContext"
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider, UserAuth } from "./context/AuthContext";
+
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Footer from "./components/Footer";
+import Spinner from './components/Spinner/Spinner';
 import axios from 'axios';
 import "./App.css"
 
@@ -46,14 +49,12 @@ function App() {
 
   //FETCH A LA API CUANDO CONOCEMOS LA UBICACION DEL USUARIO -->[ubicacionUsuario]
   useEffect(() => {
-    console.log(ubicacionUsuario)
+
     async function getAll() {
       try {
         const resHome = await axios.get("https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/")
         const jsonHome = await resHome.data.ListaEESSPrecio
-        console.log(jsonHome);
         setGasolinerasBruto([...jsonHome])
-        console.log(gasolinerasBruto);
       } catch (e) {
         console.error("Error en la petición de datos:", e)
 
@@ -156,15 +157,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <AuthContextProvider>
-          <Header />
+        <AuthContextProvider>          
           <GasolinerasListContext.Provider value={gasolinerasListData}>
             <UserUbicationContext.Provider value={ubicacioUsuarioData}>
-              <Main />
+              { gasolinerasList.length == 0? <Spinner/> : 
+                <>
+                  <Header/>
+                  <Main/>
+                  <Footer/>
+                </>
+              }
             </UserUbicationContext.Provider>
           </GasolinerasListContext.Provider>
         </AuthContextProvider>
-        {/* <Footer/> */}
+        
       </BrowserRouter>
     </>
   )

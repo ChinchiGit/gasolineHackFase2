@@ -8,6 +8,7 @@ const Cercana = () => {
   return (
     <>
       <section>
+        <h4>Tu gasoliera más cercana</h4>
         <table className="gas-station-card">
           <tbody>
             <tr>
@@ -45,7 +46,7 @@ const Cercana = () => {
           </tbody>
         </table>
       </section>
-      <section>
+      <section className="mapasSection">
         <Mapas />
       </section>
     </>

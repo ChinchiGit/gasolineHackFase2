@@ -1,12 +1,13 @@
 #root {
-  --rojoHoover: #FB3640; 
+  --rojoHoover: #FB3640;
   --grey: rgb(95, 94, 93);
   --blueMain: rgb(28, 51, 97);
   --blueFondo: #1F487E;
-  --blueClear : rgb(36, 121, 158);
+  --blueClear: rgb(36, 121, 158);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,16 +15,25 @@
   font-weight: 400;
 
 
-  
-}
-
-header{
-  padding-right: 15px;
-  padding-left: 15px;
 
 }
 
-section{
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+ 
+}
+
+section {
   background-color: rgba(36, 121, 158, 0.7);
   width: 95%;
   border-radius: 15px;
@@ -35,7 +45,7 @@ section{
 }
 
 
-article{
+article {
   background-color: rgba(36, 121, 158, 0.7);
   width: 80%;
   border-radius: 15px;
@@ -46,12 +56,14 @@ article{
 }
 
 
-table{
-
+table {
+  width: 90% !important;
+  ;
+  margin: auto;
   border-color: black;
   border-width: 1px;
   border-style: ridge;
-  text-align: center;     
+  text-align: center;
   margin: 40px auto;
   border-collapse: collapse;
   background-color: var(--grey);
@@ -59,52 +71,64 @@ table{
   color: white;
 }
 
-td{
+
+button {
+  width: 200px;
+}
+
+td {
   border-color: black;
   border-width: 1px;
   border-style: ridge;
   width: 25%;
   padding: 5px;
- 
+
 }
 
-th{
+th {
   background-color: var(--blueFondo);
   border-color: black;
   border-width: 1px;
   border-style: ridge;
   padding: 5px;
-  
+
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
 }
 
-.mapContainer{
-  margin-left:auto;
+.mapContainer {
+  margin-left: auto;
   margin-right: auto;
 
 }
 
-#root > main > section:nth-child(2) > div > div{
-  margin-left:auto;
-  margin-right: auto;
-
-}
-#root > main > section:nth-child(3) > div{
-  margin-left:auto;
+#root>main>section:nth-child(2)>div>div {
+  margin-left: auto;
   margin-right: auto;
 
 }
 
+#root>main>section:nth-child(3)>div {
+  margin-left: auto;
+  margin-right: auto;
 
-.contenedorGrafica{
+}
+
+
+.contenedorGrafica {
   background-color: aliceblue;
 }
+
+#mainLogo{
+  max-width:60%;
+};
+
+
 
 .logo {
   height: 6em;
@@ -112,9 +136,11 @@ form{
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -130,66 +156,17 @@ form{
 
 @media only screen and (min-width: 768px) {
 
-  body{
+  body {
     max-width: 800px;
+    height: 100%;
     margin: auto;
   }
 
-  header{
-    border-radius:20px;
-    margin-top: 25px;
+  #mainLogo {
+    max-width: 60%;
   }
 
-  footer{
-    max-width: 800px;
-    border-radius: 5px;
-  }
-
-
-  article {
-    width: 40%
-  }
-
-
-  #listaProvincia{
-    display: none;
-    flex-direction: row
-  }
-  
-  #vistaUnica{
-    display: none;
-    flex-direction: row
-  }
-
-  #singleGas{
-    display: flex;
-    flex-direction: row
-  }
-
-  #infoSingleGas{
-    width: 35%;
-  }
-
-  #mapaSingleGas{
-    width: 50%;
-  }
-
-  #tablaProvincia{
-    width: 35%;
-  }
-  #mapaProvincia{
-    width: 50%;
-  }
-
-  #map4{
-    display: none;
-  }
-
-  #map, #map2, #map3, #map4{
-    width: 90%;
-    height: 90%;
-    margin: auto;
-  }
+  ;
 
 
 }
