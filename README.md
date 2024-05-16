@@ -30,7 +30,9 @@ GasolineHackFase2 es una aplicación fullstack desarrollada con React en el fron
 
 ## Información Adicional
 
-- **Fecha de Realización**: El proyecto se completó en un plazo de una semana, desde el 11 de diciembre como parte del Bootcamp de Desarrollo Web Fullstack en The Bridge.
+- **Fecha de Realización**: La base del proyecto se completó en un plazo de una semana, desde el 11 de diciembre como proyecto final del Bootcamp de Desarrollo Web Fullstack en The Bridge. 
+
+Posteriormente se han añadido periódicamente diferentes mejoras, además de realizar el despliegue del front end en Netlify. 
 
 - **Responsable y Autor**: Carlos Chinchilla
 
