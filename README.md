@@ -38,6 +38,12 @@ Posteriormente se han añadido periódicamente diferentes mejoras, además de re
 
 - **Contacto**: [carloschinchillamoreno@gmail.com](mailto:carloschinchillamoreno@gmail.com)
 
+## Backend:
+
+  Realizazo con Node.js, Sequelize y Postgre SQL, tiene como mismión almacenar las gasolineras que los usuarios guardan como favoritas así como los precios para poder mostrar un histórico a los usuarios registrados. Se encuentra desplegado en Vercel y accesible en el siguiente repositorio:
+
+  [Backend - Gasoline Hack](https://github.com/ChinchiGit/gasolineHackV2_backSQL)
+
 ## Contribución
 
 ¡Todas las sugerencias y contribuciones son bienvenidas! Si quieres mejorar o agregar nuevas características, no dudes en contactar.
