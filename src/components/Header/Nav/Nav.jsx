@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { UserAuth } from "../../../context/AuthContext";
 import "./Nav.css"
-
 
 const Nav = () => {
   const { user } = UserAuth();
@@ -31,18 +30,17 @@ const Nav = () => {
   return (
     <>
       <nav onMouseEnter={handleMouseEnter}>
-
         <div>
           <Link to='/login'><img id="canIcon" src="/assets/img/nav_icon01.png" alt="Logo GasolineHack" /></Link>
         </div>
         <div id="desplegable">
-          <input type="checkbox" id="menu" checked={isChecked} onChange={handleInputChange}/>
-          <label htmlFor="menu" id="menu-icon">☰</label>
+          <input type="checkbox" id="menu" checked={isChecked} onChange={handleInputChange} />
+          <label htmlFor="menu" id="menu-icon" className={isChecked ? "rotate" : ""}>☰</label>
           <ul>
-            <li ><Link to='/home'>HOME</Link></li>
-            <li ><Link to='/cercana'>GASOLINERA MAS CERCANA</Link></li>
-            <li ><Link to='/provincia'>BUSCAR POR PROVINCIA</Link></li>
-            <li ><Link to='/radio'>BUSCAR POR RADIO</Link></li>
+            <li><Link to='/home'>HOME</Link></li>
+            <li><Link to='/cercana'>GASOLINERA MAS CERCANA</Link></li>
+            <li><Link to='/provincia'>BUSCAR POR PROVINCIA</Link></li>
+            <li><Link to='/radio'>BUSCAR POR RADIO</Link></li>
             {user &&
               <>
                 <li><Link to='/misgasolineras'>MIS GASOLINERAS</Link></li>
@@ -52,10 +50,8 @@ const Nav = () => {
           </ul>
         </div>
       </nav>
-
     </>
-  )
+  );
 };
 
 export default Nav;
-
