@@ -6,11 +6,10 @@ const HistoricoPrecios = ({idGasolinera}) => {
   console.log(idGasolinera)
   const[preciosGasolinera, setpreciosGasolinera] = useState([])
 
-  //LLAMADA A LA BB. DD. (EN LOCAL) PARA TRAER LOS PRECIOS GUARDADOS POR EL USUARIO.
+  //LLAMADA A LA BB. DD. PARA TRAER LOS PRECIOS GUARDADOS POR EL USUARIO.
   useEffect(() => {
     let preciosUser;
     async function getPreciosGasolinera() {
-      // const idBus = "carloschinchillamoreno@gmail.com";
       const endpoint = `https://gasolinehack-back.onrender.com/gasolineras/all-gasstation-prices?idGasolinera=${idGasolinera}`;
 
 

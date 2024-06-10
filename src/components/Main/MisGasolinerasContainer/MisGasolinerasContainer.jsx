@@ -14,7 +14,7 @@ const MisGasolinerasContainer = () => {
 
 
 
-  // FETCH A LA BASE DE DATOS SQL (EN LOCAL) PARA OBTENER GASOLINERAS DE USUARIO REGISTRADO CON SU MAIL
+  // FETCH A LA BASE DE DATOS SQL PARA OBTENER GASOLINERAS DE USUARIO REGISTRADO CON SU MAIL
   useEffect(() => {
     let gasolinerasUser;
     async function fetchData() {
@@ -70,6 +70,12 @@ const MisGasolinerasContainer = () => {
         });
   
         alert('Añadido el precio de hoy a tu histórico de precios', response.data);
+        setDatosApiMG(prevData => {
+          const updatedData = [...prevData];
+          updatedData[i]["Precio Gasolina 95 E5"] = precioGasolina;
+          updatedData[i]["Precio Gasoleo A"] = precioDiesel;
+          return updatedData;
+        });
       } catch (error) {
         console.error('Se produjo un error:', error.message);
       }
