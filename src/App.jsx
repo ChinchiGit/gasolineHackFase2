@@ -14,7 +14,7 @@ import "./App.css"
 
 function App() {
   //ESTADO PARA ALMACENAR UBICACION DEL USUARIO.  SE COMPARTE POR CONTEXTO.
-  const [ubicacionUsuario, setUbicacionUsuario] = useState()
+  const [ubicacionUsuario, setUbicacionUsuario] = useState("")
 
   //ESTADO PARA ALMACENAR OBJETO PROVENIENTE DE FETCH
   const [gasolinerasBruto, setGasolinerasBruto] = useState([]);
@@ -25,26 +25,29 @@ function App() {
 
   //PEDIR LA UBICACION DEL USUARIO UNA VEZ AL ARRANCAR LA APLICACION -->[]
   useEffect(() => {
-    //OBTENER UBICACION DEL NAVEGADOR 
     const obtenerUbicacion = () => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUbicacionUsuario({ latitud: latitude, longitud: longitude });
-        },
-        (error) => {
-          console.error('Error al obtener la ubicación:', error.message);
-        }
-      );
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setUbicacionUsuario({ latitud: latitude, longitud: longitude });
+          },
+          (error) => {
+            console.error('Error al obtener la ubicación:', error.message);
+            // Manejar el error, por ejemplo, estableciendo una ubicación predeterminada
+            setUbicacionUsuario({ latitud: "", longitud: "" }); // Ubicación de Madrid como ejemplo
+          }
+        );
+      } else {
+        console.error('Geolocalización no soportada por este navegador');
+        // Establecer una ubicación predeterminada si la geolocalización no está disponible
+        setUbicacionUsuario({ latitud: 40.416775, longitud: -3.703790 }); // Ubicación de Madrid como ejemplo
+      }
     };
 
-    // POR SI EL NAVEGADOR NO PERMITE GEOLOCALIZAR
-    if ('geolocation' in navigator) {
-      obtenerUbicacion();
-    } else {
-      console.error('Geolocalización no soportada por este navegador');
-    }
+    obtenerUbicacion();
   }, []);
+
 
 
   //FETCH A LA API CUANDO CONOCEMOS LA UBICACION DEL USUARIO -->[ubicacionUsuario]
@@ -151,7 +154,7 @@ function App() {
 
 
   const gasolinerasListData = { gasolinerasList };
-  const ubicacioUsuarioData = { ubicacionUsuario };
+  const ubicacioUsuarioData = { ubicacionUsuario, setUbicacionUsuario };
 
 
   return (
