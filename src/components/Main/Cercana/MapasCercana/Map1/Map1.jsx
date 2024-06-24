@@ -17,6 +17,7 @@ const Map1 = () => {
   });
 
   return (
+    <>
     <MapContainer center={[gasolinerasList[0].Latitud, gasolinerasList[0]["Longitud (WGS84)"]]} zoom={15} style={{ height: '400px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -29,6 +30,7 @@ const Map1 = () => {
       </Marker>
 
     </MapContainer>
+    </>
   );
 };
 

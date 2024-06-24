@@ -14,9 +14,9 @@ const Map2 = () => {
   delete L.Icon.Default.prototype._getIconUrl;
 
   L.Icon.Default.mergeOptions({
-    iconRetinaUrl: '/assets/images/marker-icon-2x.png',
-    iconUrl: '/assets/images/marker-icon.png',
-    shadowUrl: '/assets/images/marker-shadow.png',
+    iconRetinaUrl: '/assets/img/marker-icon-2x.png',
+    iconUrl: '/assets/img/marker-icon.png',
+    shadowUrl: '/assets/img/marker-shadow.png',
   });
 
   const customMarkerIcon = new L.Icon({

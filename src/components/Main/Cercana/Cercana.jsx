@@ -6,8 +6,11 @@ import LocationSpinner from "../../LocationSpinner/LocationSpinner";
 import "./Cercana.css";
 
 const Cercana = () => {
-  const { gasolinerasList } = useContext(GasolinerasListContext);
   const { ubicacionUsuario } = useContext(UserUbicationContext);
+  const { status } = useContext(UserUbicationContext);
+  const { gasolinerasList } = useContext(GasolinerasListContext);
+
+
 
   return (
     <>
@@ -49,13 +52,15 @@ const Cercana = () => {
                 </tr>
                 <tr>
                   <td className="tDetailsblue">Distancia:</td>
-                  <td>{gasolinerasList[1].distancia} Km</td>
+                  <td>{gasolinerasList[0].distancia} Km</td>
                 </tr>
               </tbody>
             </table>
           </section>
           <section className="mapasSection">
-            <Mapas />
+            {status == true ?
+              <Mapas /> : 
+              <p>Espera un momento, por favor...</p>}
           </section>
         </>
       )}

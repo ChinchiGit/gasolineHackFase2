@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Map1 from './Map1'; // Importa el componente del mapa con pin
@@ -12,23 +12,23 @@ const MapaConAmbos = () => {
   };
 
   return (
-    <div>
-      <button onClick={toggleMapa}>
-        {mostrarMap1 ? "Cómo Llegar" : "Volver"}
-      </button>
+        <div>
+          <button onClick={toggleMapa}>
+            {mostrarMap1 ? "Cómo Llegar" : "Volver"}
+          </button>
 
-      <MapContainer center={[0, 0]} zoom={12} style={{ height: '400px', width: '100%' , maxWidth: "620px"}}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+          <MapContainer center={[0, 0]} zoom={12} style={{ height: '400px', width: '100%' , maxWidth: "620px"}}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-        {mostrarMap1 ? (
-          <Map1  />
-        ) : (
-          <Map2 />
-        )}
-      </MapContainer>
-    </div>
+            {mostrarMap1 ? (
+              <Map1  />
+            ) : (
+              <Map2 />
+            )}
+          </MapContainer>
+        </div>
   );
 };
 

@@ -10,11 +10,14 @@ import Footer from "./components/Footer";
 import Spinner from './components/Spinner/Spinner';
 import axios from 'axios';
 import "./App.css"
+import { set } from 'firebase/database';
 
 
 function App() {
   //ESTADO PARA ALMACENAR UBICACION DEL USUARIO.  SE COMPARTE POR CONTEXTO.
-  const [ubicacionUsuario, setUbicacionUsuario] = useState("")
+  const [ubicacionUsuario, setUbicacionUsuario] = useState("");
+
+  const [status, setStatus] = useState(false);
 
   //ESTADO PARA ALMACENAR OBJETO PROVENIENTE DE FETCH
   const [gasolinerasBruto, setGasolinerasBruto] = useState([]);
@@ -23,34 +26,7 @@ function App() {
   const [gasolinerasList, setGasolinerasList] = useState("");
 
 
-  //PEDIR LA UBICACION DEL USUARIO UNA VEZ AL ARRANCAR LA APLICACION -->[]
-  useEffect(() => {
-    const obtenerUbicacion = () => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUbicacionUsuario({ latitud: latitude, longitud: longitude });
-          },
-          (error) => {
-            console.error('Error al obtener la ubicación:', error.message);
-            // Manejar el error, por ejemplo, estableciendo una ubicación predeterminada
-            setUbicacionUsuario({ latitud: "", longitud: "" }); // Ubicación de Madrid como ejemplo
-          }
-        );
-      } else {
-        console.error('Geolocalización no soportada por este navegador');
-        // Establecer una ubicación predeterminada si la geolocalización no está disponible
-        setUbicacionUsuario({ latitud: 40.416775, longitud: -3.703790 }); // Ubicación de Madrid como ejemplo
-      }
-    };
-
-    obtenerUbicacion();
-  }, []);
-
-
-
-  //FETCH A LA API CUANDO CONOCEMOS LA UBICACION DEL USUARIO -->[ubicacionUsuario]
+  //FETCH DE DATOS DE GASOLINERAS AL CARGAR LA PAGINA
   useEffect(() => {
 
     async function getAll() {
@@ -65,15 +41,15 @@ function App() {
     };
     getAll();
 
-  }, [ubicacionUsuario]);
+  }, []);
 
   //DEPURADO DEL OBJETO. SE HACE CUANDO YA TENEMOS LOS DATOS PROVENIENTES DEL FETCH EN EL ESTADO --> [gasolinerasBruto]
   useEffect(() => {
 
     let gasolinerasDepurado1 = [];
     let gasolinerasDepurado2 = [];
-    let distancia;
 
+    // DEPURACION 1 ELIMINAR LAS GASOLINERAS QUE NO TIENEN VENTA AL PUBLICO (COOPERATIVAS Y PRIVADAS)
     function depurar1() {
       for (let i = 0; i < gasolinerasBruto.length; i++) {
         if (gasolinerasBruto[i]["Tipo Venta"] == "P") {
@@ -103,77 +79,113 @@ function App() {
       setGasolinerasList([...gasolinerasDepurado2]);
     };
 
-    //FUNCION HAVERSIN CALCULAR DISTANCIA (SE INVOCA DENTRO DE LA SIGUIENTE)
-    function distanciaHaversine(latitud1, longitud1, latitud2, longitud2) {
-      const R = 6371.01 // Radio de la Tierra en kilómetros
-      const φ1 = latitud1 * Math.PI / 180
-      const φ2 = latitud2 * Math.PI / 180
-      const Δφ = (latitud2 - latitud1) * Math.PI / 180
-      const Δλ = (longitud2 - longitud1) * Math.PI / 180
-
-      const a = Math.sin(Δφ / 2) ** 2 + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-      distancia = (R * c);
-      return R * c;
-    };
-
-    //ORDENAR POR DISTANCIA AL USUARIO
-    function getGasolineraMasCercana(listado) {
-      for (let i = 0; i < listado.length; i++) {
-        distanciaHaversine(ubicacionUsuario.latitud, ubicacionUsuario.longitud, listado[i].Latitud, listado[i]["Longitud (WGS84)"]);
-        listado[i].distancia = distancia.toFixed(2);
-      }
-
-    }
-
-    //ORDENAR POR DISTANCIA AL USUARIO
-    function ordenarPorDistancia() {
-      gasolinerasDepurado2.sort(function (a, b) {
-        if (a["distancia"] > b["distancia"]) {
-          return 1;
-        }
-        if (a["distancia"] < b["distancia"]) {
-          return -1;
-        }
-
-        return 0;
-      });
-    };
-
-
-
-
     depurar1();
     depurar2();
-    getGasolineraMasCercana(gasolinerasDepurado2);
-    ordenarPorDistancia();
     setGasolinerasList(gasolinerasDepurado2);
     console.log(gasolinerasList);
 
   }, [gasolinerasBruto]);
 
+  //OBTENER UBICACION DEL USUARIO CUANDO LA LISTA DE GASOLINERAS ESTÁ DEPURADA
+  useEffect(() => {
+    const obtenerUbicacion = () => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setUbicacionUsuario({ latitud: latitude, longitud: longitude });
+            console.log('Ubicación obtenida:', latitude, longitude);
+          },
+          (error) => {
+            console.error('Error al obtener la ubicación:', error.message);
+            // Manejar el error, por ejemplo, estableciendo una ubicación predeterminada
+            // setUbicacionUsuario({ latitud: "", longitud: "" }); // Ubicación de Madrid como ejemplo
+          }
+        );
+      } else {
+        console.error('Geolocalización no soportada por este navegador');
+        // Establecer una ubicación predeterminada si la geolocalización no está disponible
+        //setUbicacionUsuario({ latitud: 40.416775, longitud: -3.703790 }); // Ubicación de Madrid como ejemplo
+      }
+    };
+
+    obtenerUbicacion();
+  }, [gasolinerasBruto]);
+
+  //ORDENAR LAS GASOLINERAS POR DISTANCIA AL USUARIO CUANDO SE CONOCE SU UBICACIÓN
+  useEffect(() => {
+    if (ubicacionUsuario !== "") {
+      console.log(ubicacionUsuario);
+      console.log("Me estoy ejecutando")
+      let listadoConDistancia = [...gasolinerasList];
+      let distancia;
+
+      //FUNCION HAVERSIN CALCULAR DISTANCIA (SE INVOCA DENTRO DE LA SIGUIENTE)
+      function distanciaHaversine(latitud1, longitud1, latitud2, longitud2) {
+        const R = 6371.01 // Radio de la Tierra en kilómetros
+        const φ1 = latitud1 * Math.PI / 180
+        const φ2 = latitud2 * Math.PI / 180
+        const Δφ = (latitud2 - latitud1) * Math.PI / 180
+        const Δλ = (longitud2 - longitud1) * Math.PI / 180
+
+        const a = Math.sin(Δφ / 2) ** 2 + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        distancia = (R * c);
+        return R * c;
+      };
+
+      //INTRODUCIR LA DISTANCIA AL USUARIO EN EL LISTADO DE GASOLINERAS
+      function introducirDistancia(listado) {
+        for (let i = 0; i < listado.length; i++) {
+          distanciaHaversine(ubicacionUsuario.latitud, ubicacionUsuario.longitud, listado[i].Latitud, listado[i]["Longitud (WGS84)"]);
+          listado[i].distancia = distancia.toFixed(2);
+        }
+
+      }
+
+      //ORDENAR POR DISTANCIA AL USUARIO
+      function ordenarPorDistancia() {
+        listadoConDistancia.sort(function (a, b) {
+          if (a["distancia"] > b["distancia"]) {
+            return 1;
+          }
+          if (a["distancia"] < b["distancia"]) {
+            return -1;
+          }
+
+          return 0;
+        });
+      };
+
+      introducirDistancia(listadoConDistancia);
+      ordenarPorDistancia();
+      setGasolinerasList([...listadoConDistancia]);
+      setStatus(true);
+    }
+  }, [ubicacionUsuario]);
+
 
   const gasolinerasListData = { gasolinerasList };
-  const ubicacioUsuarioData = { ubicacionUsuario, setUbicacionUsuario };
+  const ubicacionUsuarioData = { ubicacionUsuario, setUbicacionUsuario, status };
 
 
   return (
     <>
       <BrowserRouter>
-        <AuthContextProvider>          
+        <AuthContextProvider>
           <GasolinerasListContext.Provider value={gasolinerasListData}>
-            <UserUbicationContext.Provider value={ubicacioUsuarioData}>
-              { gasolinerasList.length == 0? <Spinner/> : 
+            <UserUbicationContext.Provider value={ubicacionUsuarioData}>
+              {gasolinerasList.length == 0 ? <Spinner /> :
                 <>
-                  <Header/>
-                  <Main/>
-                  <Footer/>
+                  <Header />
+                  <Main />
+                  <Footer />
                 </>
               }
             </UserUbicationContext.Provider>
           </GasolinerasListContext.Provider>
         </AuthContextProvider>
-        
+
       </BrowserRouter>
     </>
   )
