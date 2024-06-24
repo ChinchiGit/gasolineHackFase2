@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import ProvinciaForm from "./ProvinciaForm/ProvinciaForm";
 import ProvinciaList from "./ProvinciaList/ProvinciaList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import { UserUbicationContext } from "../../../context/UserUbicationContext";
+import LocationSpinner from "../../LocationSpinner/LocationSpinner";
 import Map1provincia from "./ProvinciaList/Map1provincia/Map1provincia"
 
 const ProvinciaContainer = () => {
+  const { ubicacionUsuario } = useContext(UserUbicationContext);
   //RECOGE DE CONTEXTO EL CONJUNTO DE GASOLINERAS
   const { gasolinerasList } = useContext(GasolinerasListContext);
   //ESTADO QUE RECOGE DEL FORMULARIO LA PROVINCIA Y TIPO DE COMBUSTIBLE
@@ -46,9 +49,13 @@ const ProvinciaContainer = () => {
 
   return (
     <>
-      <section>
-        <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
-      </section>
+      {!ubicacionUsuario || !ubicacionUsuario.latitud || !ubicacionUsuario.longitud ? (
+        <LocationSpinner />
+      ) : (
+        <section>
+          <ProvinciaForm setEleccionUsuario={setEleccionUsuario} />
+        </section>
+      )}
       {eleccionUsuario &&
         <>
           <section>

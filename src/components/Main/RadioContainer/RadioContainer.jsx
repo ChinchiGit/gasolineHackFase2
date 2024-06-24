@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import RadioForm from "./RadioForm/RadioForm";
 import RadioList from "./RadioList/RadioList"
 import { GasolinerasListContext } from "../../../context/GasolinerasListContext";
+import { UserUbicationContext } from "../../../context/UserUbicationContext";
 import Map1radio from "./RadioList/Map1radio/Map1radio";
+import LocationSpinner from "../../LocationSpinner/LocationSpinner";
 import "./RadioContainer.css"
 
 const RadioContainer = () => {
+  const { ubicacionUsuario } = useContext(UserUbicationContext);
   // RECOGE DE CONTEXTO EL LISTADO TOTAL DEPURADO
   const { gasolinerasList } = useContext(GasolinerasListContext);
   //RECOGE DEL FORMULARIO EL RADIO DE BUSQEDA Y TIPO DE COMBUSTIBLE
@@ -47,18 +50,22 @@ const RadioContainer = () => {
 
   return (
     <>
-      <section id="radioForm">
-      <RadioForm setEleccionUsuario={setEleccionUsuario} />
-      </section>
+      {!ubicacionUsuario || !ubicacionUsuario.latitud || !ubicacionUsuario.longitud ? (
+        <LocationSpinner />
+      ) : (
+        <section id="radioForm">
+          <RadioForm setEleccionUsuario={setEleccionUsuario} />
+        </section>
+      )}
       {eleccionUsuario &&
-      <>
-        <section>
-        <RadioList data={listadoRadio} eleccion={eleccionUsuario} />
-        </section>
-        <section>
-        <Map1radio data={listadoRadio}/>
-        </section>
-      </>
+        <>
+          <section>
+            <RadioList data={listadoRadio} eleccion={eleccionUsuario} />
+          </section>
+          <section>
+            <Map1radio data={listadoRadio} />
+          </section>
+        </>
       }
     </>
   )
