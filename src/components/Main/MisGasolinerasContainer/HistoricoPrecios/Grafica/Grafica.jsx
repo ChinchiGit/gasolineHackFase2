@@ -29,7 +29,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Histórico de precios(€/l)',
+      text: 'Histórico de precios(€/Litro)',
     },
   },
 };

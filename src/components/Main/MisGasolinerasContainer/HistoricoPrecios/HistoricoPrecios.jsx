@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Grafica} from "./Grafica/Grafica"
 
-const HistoricoPrecios = ({idGasolinera}) => {
+const HistoricoPrecios = ({idGasolinera, nuevoPrecio}) => {
   console.log(idGasolinera)
   const[preciosGasolinera, setpreciosGasolinera] = useState([])
 
@@ -28,11 +28,11 @@ const HistoricoPrecios = ({idGasolinera}) => {
     }
 
     getPreciosGasolinera();
-  }, []);
+  }, [idGasolinera, nuevoPrecio]);
 
 
 
-  //variables para asar por props a la grafica
+  //variables para pasar por props a la grafica
   const fechas =[];
   const preciosDiesel=[];
   const preciosGasolina=[];

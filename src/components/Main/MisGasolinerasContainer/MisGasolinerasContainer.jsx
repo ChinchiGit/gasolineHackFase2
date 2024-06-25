@@ -5,13 +5,14 @@ import { GasolinerasListContext } from "../../../context/GasolinerasListContext"
 import { UserAuth } from "../../../context/AuthContext";
 import HistoricoPrecios from "./HistoricoPrecios/HistoricoPrecios"
 import SpinnerMG from "./SpinnerMG/SpinnerMG";
+import { set } from "firebase/database";
 
 const MisGasolinerasContainer = () => {
   const { user } = UserAuth();
   const { gasolinerasList } = useContext(GasolinerasListContext);
   const [misGasolineras, setMisGasolineras] = useState([]);
   const [datosApiMG, setDatosApiMG] = useState([]);
-
+  const [nuevoPrecio, setNuevoPrecio] = useState(false);
 
 
   // FETCH A LA BASE DE DATOS SQL PARA OBTENER GASOLINERAS DE USUARIO REGISTRADO CON SU MAIL
@@ -70,12 +71,7 @@ const MisGasolinerasContainer = () => {
         });
   
         alert('Añadido el precio de hoy a tu histórico de precios', response.data);
-        setDatosApiMG(prevData => {
-          const updatedData = [...prevData];
-          updatedData[i]["Precio Gasolina 95 E5"] = precioGasolina;
-          updatedData[i]["Precio Gasoleo A"] = precioDiesel;
-          return updatedData;
-        });
+        setNuevoPrecio(true);
       } catch (error) {
         console.error('Se produjo un error:', error.message);
       }
@@ -121,7 +117,7 @@ const MisGasolinerasContainer = () => {
               <button onClick={() => addPrecio(element, i)}>GUARDAR PRECIO</button>
 
             <article className="contenedorGrafica">
-              <HistoricoPrecios idGasolinera={misGasolineras[i].idGasolinera}/>
+              <HistoricoPrecios idGasolinera={misGasolineras[i].idGasolinera} nuevoPrecio ={nuevoPrecio}/>
             </article>
           </section>
 
