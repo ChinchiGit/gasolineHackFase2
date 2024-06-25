@@ -71,7 +71,7 @@ const MisGasolinerasContainer = () => {
         });
   
         alert('Añadido el precio de hoy a tu histórico de precios', response.data);
-        setNuevoPrecio(true);
+        setNuevoPrecio((prev) => !prev);
       } catch (error) {
         console.error('Se produjo un error:', error.message);
       }

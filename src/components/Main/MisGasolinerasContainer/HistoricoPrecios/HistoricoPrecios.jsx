@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {Grafica} from "./Grafica/Grafica"
+import { Grafica } from "./Grafica/Grafica"
 
-const HistoricoPrecios = ({idGasolinera, nuevoPrecio}) => {
+const HistoricoPrecios = ({ idGasolinera, nuevoPrecio }) => {
   console.log(idGasolinera)
-  const[preciosGasolinera, setpreciosGasolinera] = useState([])
+  const [preciosGasolinera, setpreciosGasolinera] = useState([])
 
   //LLAMADA A LA BB. DD. PARA TRAER LOS PRECIOS GUARDADOS POR EL USUARIO.
   useEffect(() => {
@@ -15,12 +15,12 @@ const HistoricoPrecios = ({idGasolinera, nuevoPrecio}) => {
 
       try {
         const response = await axios.get(endpoint);
-        
+
         preciosUser = response.data[0].Precios;
-        
+
 
         setpreciosGasolinera([...preciosUser])
-        
+
 
       } catch (error) {
         console.error('Error al realizar la solicitud:', error.message);
@@ -33,24 +33,29 @@ const HistoricoPrecios = ({idGasolinera, nuevoPrecio}) => {
 
 
   //variables para pasar por props a la grafica
-  const fechas =[];
-  const preciosDiesel=[];
-  const preciosGasolina=[];
+  const fechas = [];
+  const preciosDiesel = [];
+  const preciosGasolina = [];
 
-  for (let i=0; i<preciosGasolinera.length; i++){
+  for (let i = 0; i < preciosGasolinera.length; i++) {
     fechas.push(preciosGasolinera[i].fecha);
     preciosDiesel.push(preciosGasolinera[i].precioDiesel);
     preciosGasolina.push(preciosGasolinera[i].precioGasolina);
   }
-  
-  for(let i=0; i<fechas.length; i++){
-    fechas[i] = fechas[i].slice(0,10);
-    console.log(fechas[i])
+
+  for (let i = 0; i < fechas.length; i++) {
+    const date = new Date(fechas[i]);
+    fechas[i] = date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit'
+    });
+    console.log(fechas[i]);
   }
- 
+
 
   return (
-    <Grafica fechas={fechas} preciosDiesel={preciosDiesel} preciosGasolina={preciosGasolina}/>
+    <Grafica fechas={fechas} preciosDiesel={preciosDiesel} preciosGasolina={preciosGasolina} />
 
   );
 };
