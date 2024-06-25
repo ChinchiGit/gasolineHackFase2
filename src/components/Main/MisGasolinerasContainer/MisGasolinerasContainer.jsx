@@ -63,7 +63,11 @@ const MisGasolinerasContainer = () => {
   
       try {
         const response = await axios.post(endpoint, {
-          fecha : fecha,
+          fecha : fecha.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit'
+          }),
           idGasolinera : idGasolinera,
           precioGasolina : precioGasolina,
           precioDiesel: precioDiesel

@@ -11,6 +11,14 @@ const Map2Details = () => {
   const { ubicacionUsuario } = useContext(UserUbicationContext);
   const { gasolinerasList } = useContext(GasolinerasListContext);
   const [gasolineraDetails, setGasolineraDetails] = useState(null);
+  
+  delete L.Icon.Default.prototype._getIconUrl;
+
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: '/assets/img/marker-icon-2x.png',
+    iconUrl: '/assets/img/marker-icon.png',
+    shadowUrl: '/assets/img/marker-shadow.png',
+  });
 
   const customMarkerIcon = new L.Icon({
     iconUrl: "/assets/img/dispenser.png",
