@@ -1,3 +1,8 @@
-.grafica-bar {
+@media only screen and (min-width: 768px) {
+
+  .grafica-bar {
     min-height: 250px;
   }
+
+
+}

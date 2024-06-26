@@ -76,7 +76,7 @@ const ProvinciaList = ({ data, eleccion }) => {
             })}
           </tbody>
         </table>
-        <div>
+        <div className="pagination">
           <button onClick={() => previousPage()} disabled={!canPreviousPage}>
             {'<'}
           </button>{' '}
