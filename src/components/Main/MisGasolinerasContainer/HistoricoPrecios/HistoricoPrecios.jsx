@@ -37,22 +37,23 @@ const HistoricoPrecios = ({ idGasolinera, nuevoPrecio }) => {
   const preciosDiesel = [];
   const preciosGasolina = [];
 
+  const uniqueFechas = new Set();
   for (let i = 0; i < preciosGasolinera.length; i++) {
-    fechas.push(preciosGasolinera[i].fecha);
-    preciosDiesel.push(preciosGasolinera[i].precioDiesel);
-    preciosGasolina.push(preciosGasolinera[i].precioGasolina);
-  }
-
-  for (let i = 0; i < fechas.length; i++) {
-    const date = new Date(fechas[i]);
-    fechas[i] = date.toLocaleDateString('es-ES', {
+    const date = new Date(preciosGasolinera[i].fecha);
+    const formattedDate = date.toLocaleDateString('es-ES', {
       day: '2-digit',
       month: '2-digit',
       year: '2-digit'
     });
-    console.log(fechas[i]);
-  }
 
+    // Solo agregar si la fecha no está repetida
+    if (!uniqueFechas.has(formattedDate)) {
+      uniqueFechas.add(formattedDate);
+      fechas.push(formattedDate);
+      preciosDiesel.push(preciosGasolinera[i].precioDiesel);
+      preciosGasolina.push(preciosGasolinera[i].precioGasolina);
+    }
+  }
 
   return (
     <Grafica fechas={fechas} preciosDiesel={preciosDiesel} preciosGasolina={preciosGasolina} />

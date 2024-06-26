@@ -52,5 +52,5 @@ export function Grafica({fechas, preciosDiesel, preciosGasolina}) {
       },
     ],
   };
-  return <Bar options={options} data={data} />;
+  return <Bar className="grafica-bar" options={options} data={data} />;
 }
