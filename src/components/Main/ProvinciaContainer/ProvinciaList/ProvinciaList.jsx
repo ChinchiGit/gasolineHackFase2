@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable, usePagination, useSortBy } from 'react-table';
 import { Link } from 'react-router-dom';
-
+import '../../../../App.css';
 
 const ProvinciaList = ({ data, eleccion }) => {
 
@@ -76,7 +76,7 @@ const ProvinciaList = ({ data, eleccion }) => {
             })}
           </tbody>
         </table>
-        <div>
+        <div className="pagination">
           <button onClick={() => previousPage()} disabled={!canPreviousPage}>
             {'<'}
           </button>{' '}

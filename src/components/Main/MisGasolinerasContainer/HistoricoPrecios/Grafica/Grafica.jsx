@@ -9,8 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-
-
+import './Grafica.css'; // Importa el archivo CSS
 
 ChartJS.register(
   CategoryScale,
@@ -52,5 +51,5 @@ export function Grafica({fechas, preciosDiesel, preciosGasolina}) {
       },
     ],
   };
-  return <Bar options={options} data={data} />;
+  return <Bar className="grafica-bar" options={options} data={data} />;
 }

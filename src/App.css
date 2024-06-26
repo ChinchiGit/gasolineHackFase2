@@ -124,6 +124,20 @@ form {
   background-color: aliceblue;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center
+}
+.pagination>button {
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 #mainLogo{
   max-width:60%;
 };
@@ -170,3 +184,4 @@ form {
 
 
 }
+
