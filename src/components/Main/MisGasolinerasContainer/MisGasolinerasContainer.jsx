@@ -51,6 +51,22 @@ const MisGasolinerasContainer = () => {
     
   }, [misGasolineras]);
 
+  //FUNCION PARA ELIMINAR GASOLINERA DE MIS FAVORITAS:
+  const deleteGasolinera = async (i) => {
+    const idGasolinera = misGasolineras[i].idGasolinera;
+    const endpoint = "https://gasolinehack-back.onrender.com/gasolineras/delete-one";
+    alert('¿Estás seguro de que quieres eliminar esta gasolinera de tus favoritas?');
+    try {
+      const response = await axios.delete(endpoint, {
+          idGasolinera: idGasolinera
+      });
+      alert('Gasolinera eliminada de tus favoritas', response.data);
+      misGasolineras.splice(i, 1);
+    } catch (error) {
+      console.error('Se produjo un error:', error.message);
+    }
+  };
+
   //FUNCION PARA GUARDAR PRECIO DEL DIA EN LA BB.DD.
   
   const addPrecio = async (guardarPrecio, i) => {
@@ -96,7 +112,7 @@ const MisGasolinerasContainer = () => {
               <tbody>
                 <tr>
                   <td className="tDetailsblue">Dirección:</td>
-                  <td>{element.Dirección}</td>
+                  <td>{element.Dirección} <span onClick={() => deleteGasolinera(i)}>" 🗑️ "</span></td>
                 </tr>
                 <tr>
                   <td className="tDetailsblue">Localidad:</td>
