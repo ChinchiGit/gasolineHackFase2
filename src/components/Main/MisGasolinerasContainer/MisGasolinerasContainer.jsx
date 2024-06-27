@@ -112,7 +112,7 @@ const MisGasolinerasContainer = () => {
               <tbody>
                 <tr>
                   <td className="tDetailsblue">Dirección:</td>
-                  <td>{element.Dirección} <span onClick={() => deleteGasolinera(i)}>" 🗑️ "</span></td>
+                  <td>{element.Dirección} <span onClick={() => deleteGasolinera(i)}> 🗑️ </span></td>
                 </tr>
                 <tr>
                   <td className="tDetailsblue">Localidad:</td>
