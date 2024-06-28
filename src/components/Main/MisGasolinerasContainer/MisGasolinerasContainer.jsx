@@ -52,8 +52,7 @@ const MisGasolinerasContainer = () => {
   }, [misGasolineras]);
 
   //FUNCION PARA ELIMINAR GASOLINERA DE MIS FAVORITAS:
-  const deleteGasolinera = async (i) => {
-    const idGasolinera = misGasolineras[i].idGasolinera;
+  const deleteGasolinera = async (idGasolinera, i) => {
     const endpoint = "https://gasolinehack-back.onrender.com/gasolineras/delete-one";
     alert('¿Estás seguro de que quieres eliminar esta gasolinera de tus favoritas?');
     try {
@@ -112,7 +111,7 @@ const MisGasolinerasContainer = () => {
               <tbody>
                 <tr>
                   <td className="tDetailsblue">Dirección:</td>
-                  <td>{element.Dirección} <span onClick={() => deleteGasolinera(i)}> 🗑️ </span></td>
+                  <td>{element.Dirección}</td>
                 </tr>
                 <tr>
                   <td className="tDetailsblue">Localidad:</td>
@@ -131,7 +130,7 @@ const MisGasolinerasContainer = () => {
 
               <button><Link  to={ruta(element.IDEESS)}>DETALLES</Link></button>
               <button onClick={() => addPrecio(element, i)}>GUARDAR PRECIO</button>
-
+              <button onClick={() => deleteGasolinera(misGasolineras[i].idGasolinera, i)}>BORRAR</button>
             <article className="contenedorGrafica">
               <HistoricoPrecios idGasolinera={misGasolineras[i].idGasolinera} nuevoPrecio ={nuevoPrecio}/>
             </article>
