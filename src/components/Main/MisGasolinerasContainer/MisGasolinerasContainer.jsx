@@ -53,18 +53,23 @@ const MisGasolinerasContainer = () => {
 
   //FUNCION PARA ELIMINAR GASOLINERA DE MIS FAVORITAS:
   const deleteGasolinera = async (idGasolinera, i) => {
-    const endpoint = "https://gasolinehack-back.onrender.com/gasolineras/delete-one";
     alert('¿Estás seguro de que quieres eliminar esta gasolinera de tus favoritas?');
     try {
-      const response = await axios.delete(endpoint, {
-          idGasolinera: idGasolinera
-      });
+      // Borrar la gasolinera
+      await axios.delete(`http://tu_backend_url/api/gasolineras/delete-one`, { data: { idGasolinera } });
+  
+      // Borrar los precios asociados a esa gasolinera
+      await axios.delete(`http://tu_backend_url/api/precios/delete-by-gasolinera`, { data: { idGasolinera } });
+  
+      console.log('Gasolinera y precios borrados exitosamente');
       alert('Gasolinera eliminada de tus favoritas', response.data);
       misGasolineras.splice(i, 1);
     } catch (error) {
-      console.error('Se produjo un error:', error.message);
+      console.error('Error al borrar la gasolinera y precios:', error.response.data);
     }
   };
+
+
 
   //FUNCION PARA GUARDAR PRECIO DEL DIA EN LA BB.DD.
   
